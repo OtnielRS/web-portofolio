@@ -4,7 +4,7 @@ import SolarSystem from "./solar-system";
 
 export default function HeroSection() {
   return (
-    <section className="hero container" aria-labelledby="hero-title">
+    <section className="hero container" id="home" aria-labelledby="hero-title">
       <div className="hero-copy">
         <h1 id="hero-title">Software developer.<br /><span>Curious by nature.</span></h1>
         <p>

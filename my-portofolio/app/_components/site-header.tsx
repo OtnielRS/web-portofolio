@@ -2,16 +2,18 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import useActiveSection from "./use-active-section";
 
 const navigation = [
-  { href: "/", label: "Home" },
-  { href: "/work", label: "Work" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/", label: "Home", sectionId: "home" },
+  { href: "/work", label: "Work", sectionId: "work" },
+  { href: "/about", label: "About", sectionId: "about" },
+  { href: "/contact", label: "Contact", sectionId: "contact" },
 ];
 
 export default function SiteHeader() {
   const pathname = usePathname();
+  const activeHref = useActiveSection(pathname, navigation);
 
   return (
     <header className="portfolio-header">
@@ -21,7 +23,7 @@ export default function SiteHeader() {
             key={href}
             href={href}
             className="portfolio-navigation-link"
-            aria-current={pathname === href ? "page" : undefined}
+            aria-current={activeHref === href ? (pathname === "/" && href !== "/" ? "location" : "page") : undefined}
           >
             {label}
           </Link>

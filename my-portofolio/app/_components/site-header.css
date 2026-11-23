@@ -43,7 +43,7 @@
   background: #edeade;
 }
 
-.portfolio-navigation-link[aria-current="page"] {
+.portfolio-navigation-link[aria-current] {
   color: var(--accent);
 }
 

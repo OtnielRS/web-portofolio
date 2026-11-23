@@ -22,6 +22,8 @@ Existing Next.js App Router and TypeScript project. The user requested a visual 
 
 The portfolio has dedicated Home (/), Work (/work), About (/about), and Contact (/contact) routes. A shared header and footer appear on every route; the logo and Home links return to /. The homepage retains its full overview. Route files compose reusable features under app/_features, while shared navigation and icons live under app/_components. Project data is maintained in app/_features/work/projects.ts.
 
+On the homepage, the orange navigation highlight follows the visible section during scrolling; the journey section belongs to About. Dedicated routes highlight their current page. Navigation links still open their dedicated pages.
+
 ## Professional Profile
 
 Junior Full-stack Developer based in Jakarta. Hands-on web and mobile development with JavaScript, TypeScript, React, Next.js, and Node.js. Project work covers APIs, authentication, AI-generated game narratives, and real-time multiplayer systems. Previous experience includes supporting 400+ seller accounts at Shopee.
