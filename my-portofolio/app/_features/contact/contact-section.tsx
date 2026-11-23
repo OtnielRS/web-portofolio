@@ -22,6 +22,9 @@ export default function ContactSection({ standalone = false }: { standalone?: bo
           <a href="https://www.linkedin.com/in/otnielrahadiyan" target="_blank" rel="noopener noreferrer">
             LinkedIn <Arrow diagonal />
           </a>
+          <a href="https://github.com/OtnielRS" target="_blank" rel="noopener noreferrer">
+            GitHub <Arrow diagonal />
+          </a>
           <a href="/otniel-resume.pdf" target="_blank" rel="noopener noreferrer">
             Résumé <Arrow diagonal />
           </a>
