@@ -16,7 +16,7 @@ A personal software developer portfolio presenting Otniel Rahadiyan Sumantri and
 
 ## Capabilities and Constraints
 
-Existing Next.js App Router and TypeScript project. The user requested a visual mockup before implementation. The supplied resume is the source of truth for professional content. Three visual mockups exist, but the user has not yet selected a composition. Replace mockup project placeholders with the resume-backed projects when building. Do not invent professional claims or present generated project illustrations as actual screenshots.
+Existing Next.js App Router and TypeScript project. The user requested a visual mockup before implementation and approved C, Work in orbit. The supplied resume is the source of truth for professional content. Do not invent professional claims or present generated project illustrations as actual screenshots.
 
 ## Professional Profile
 
@@ -30,6 +30,8 @@ Junior Full-stack Developer based in Jakarta. Hands-on web and mobile developmen
 - Hacktiv Chess Ultimate — Classic Chess Game; Backend Developer; October 2026. Team of three, built in one week. Socket.io move/turn/timer synchronization, server-side validation, matchmaking, authentication, persistent game history, and reconnection/session recovery. Stack: JavaScript, Node.js, Vite, React Context, Tailwind CSS, Socket.io, Stockfish, JWT, bcrypt, Supabase, PostgreSQL. Resume demo: hacktive-chess.vercel.app/.
 
 ## Experience and Education
+
+Additional user-supplied project: Animal Quiz, an animal-learning web application shown in a supplied screenshot. Live demo: https://individual.alicemorgan.my.id/. Its exact technology stack, role and date have not been provided; omit those claims. The screenshot shows learning cards, quizzes and parent accounts.
 
 - Panca Nekasa, Procurement Staff, April–August 2024. Weekly material planning, supplier pricing analysis, procurement tracking and records.
 - Shopee Indonesia, Business Development / Long Tail Analyst, May–August 2022. Main contact for 400+ seller accounts; technical and operational troubleshooting, campaigns and performance analysis.
@@ -48,4 +50,4 @@ Astronomy and the solar system are the user's requested theme. Preserve the name
 
 ## Evidence on Hand
 
-app/page.tsx supplies the name. The user supplied C:/Users/Alice/Documents/Otniel Rahadiyan Sumantri - Resume.pdf as the reference for portfolio content. Its complete two-page text was extracted. Resume statements are user-provided evidence, not independent verification. No actual project screenshots have been supplied.
+app/page.tsx supplies the name. The user supplied C:/Users/Alice/Documents/Otniel Rahadiyan Sumantri - Resume.pdf as the reference for portfolio content. Its complete two-page text was extracted. Resume statements are user-provided evidence, not independent verification. The user subsequently provided actual Bastionfall, Hacktiv Chess, Animal Quiz and four Tempat Gosip screenshots, stored under public/projects. Tempat Gosip uses an AI-styled four-phone cover with all four original screenshots available in an expandable gallery. Alice Store retains illustrative artwork.
