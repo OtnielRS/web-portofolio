@@ -31,6 +31,8 @@ The header’s sun/moon switch and the scene’s Lights off / Lights on control 
 
 Run `npm run test:theme` to check saved preferences, pre-hydration theme initialization, switching, and blocked-storage fallback behavior.
 
+Homepage navigation and Explore my work animate to the matching sections with sticky-header clearance. Home scrolls to the actual top. On dedicated routes, navigation still opens the corresponding pages. Run `npm run test:navigation` to verify scrolling, reduced-motion behavior, and normal browser link handling.
+
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## Learn More

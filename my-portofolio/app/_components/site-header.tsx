@@ -1,10 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import useActiveSection from "./use-active-section";
 import ThemeToggle from "./theme-toggle";
-import HomeLink from "./home-link";
+import SectionLink from "./section-link";
 
 const navigation = [
   { href: "/", label: "Home", sectionId: "home" },
@@ -20,19 +19,16 @@ export default function SiteHeader() {
   return (
     <header className="portfolio-header">
       <nav className="portfolio-navigation" aria-label="Main navigation">
-        {navigation.map(({ href, label }) => (
-          href === "/" ? (
-            <HomeLink key={href} className="portfolio-navigation-link" aria-current={activeHref === "/" ? "page" : undefined}>
-              {label}
-            </HomeLink>
-          ) : <Link
+        {navigation.map(({ href, label, sectionId }) => (
+          <SectionLink
             key={href}
-            href={href}
+            pageHref={href === "/" ? "/#home" : href}
+            sectionId={sectionId}
             className="portfolio-navigation-link"
             aria-current={activeHref === href ? (pathname === "/" && href !== "/" ? "location" : "page") : undefined}
           >
             {label}
-          </Link>
+          </SectionLink>
         ))}
         <ThemeToggle compact />
       </nav>

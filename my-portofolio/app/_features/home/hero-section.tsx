@@ -1,4 +1,4 @@
-import Link from "next/link";
+import SectionLink from "@/app/_components/section-link";
 import Arrow from "@/app/_components/arrow";
 import ProgrammerScene from "./programmer-scene";
 
@@ -12,7 +12,7 @@ export default function HeroSection() {
           A junior full-stack developer building thoughtful web and mobile experiences, from the interface to the API.
         </p>
         <div className="hero-actions">
-          <Link className="button button-primary" href="/work">Explore my work <Arrow /></Link>
+          <SectionLink className="button button-primary" sectionId="work" pageHref="/work">Explore my work <Arrow /></SectionLink>
           <a className="button button-secondary" href="/otniel-resume.pdf" target="_blank" rel="noopener noreferrer">
             View résumé <Arrow diagonal />
           </a>

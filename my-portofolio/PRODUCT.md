@@ -22,7 +22,7 @@ Existing Next.js App Router and TypeScript project. The user requested a visual 
 
 The portfolio has dedicated Home (/), Work (/work), About (/about), and Contact (/contact) routes. A shared header and footer appear on every route; the logo and Home links return to /. The homepage retains its full overview. Route files compose reusable features under app/_features, while shared navigation and icons live under app/_components. Project data is maintained in app/_features/work/projects.ts.
 
-On the homepage, the orange navigation highlight follows the visible section during scrolling; the journey section belongs to About. Dedicated routes highlight their current page. Navigation links still open their dedicated pages.
+On the homepage, navigation buttons and Explore my work smoothly scroll to their matching sections; Home returns to the actual page top. The orange highlight follows the visible section, and the journey belongs to About. Dedicated routes highlight their current page and retain normal links between pages. Reduced-motion visitors receive instant scrolling, and modified clicks retain normal browser behavior.
 
 ## Theme and Homepage Scene
 

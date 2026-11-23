@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test:theme": "node --test tests/theme.test.mjs"
+    "test:theme": "node --test tests/theme.test.mjs",
+    "test:navigation": "node --test tests/section-link.test.mjs"
   },
   "dependencies": {
     "next": "16.4.6",
