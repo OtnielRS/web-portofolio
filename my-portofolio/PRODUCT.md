@@ -47,6 +47,8 @@ Junior Full-stack Developer based in Jakarta. Hands-on web and mobile developmen
 
 ## Experience and Education
 
+The shared Home and About journey presents the same four education and career milestones as an interactive chronological planet flight map, replacing the list. Four planet selectors and Previous/Next controls reveal one milestone at a time, beginning with the latest, Hacktiv8 in 2026. The map runs from university through Shopee and procurement to developer training; the supplied roles, dates, organizations and descriptions remain unchanged. On mobile the map stacks above the details. Controls expose selection and disabled endpoints, and milestone changes are announced politely. The map follows the shared light/dark theme; reduced-motion preferences remove shuttle and route transitions.
+
 Additional user-supplied project: Animal Quiz, an animal-learning web application shown in a supplied screenshot. Live demo: https://individual.alicemorgan.my.id/. Its exact technology stack, role and date have not been provided; omit those claims. The screenshot shows learning cards, quizzes and parent accounts.
 
 - Panca Nekasa, Procurement Staff, April–August 2024. Weekly material planning, supplier pricing analysis, procurement tracking and records.

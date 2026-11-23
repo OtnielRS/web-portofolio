@@ -1,0 +1,56 @@
+.screen-flow > .space-journey, .space-journey { display: flex; flex-direction: column; justify-content: center; align-items: stretch; gap: clamp(20px, 4svh, 48px); }
+.space-journey .journey-intro { display: flex; align-items: end; justify-content: space-between; gap: 24px; }
+.space-journey .journey-intro h2 { font-size: clamp(30px, 3.4vw, 48px); max-width: 15ch; }
+.space-journey .journey-intro > p { max-width: 30ch; margin: 0; font-size: 13px; }
+.journey-flight { display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(32px, 5vw, 84px); align-items: center; min-height: 0; }
+.journey-map { position: relative; aspect-ratio: 520 / 360; width: 100%; max-width: 680px; justify-self: center; }
+.journey-chart { display: block; width: 100%; height: 100%; overflow: visible; fill: none; }
+.journey-stars { fill: var(--muted); stroke: var(--muted); stroke-width: 1; opacity: .4; }
+.journey-route { stroke: var(--line); stroke-width: 1.5; stroke-dasharray: 3 7; }
+.journey-route-traveled { stroke: var(--accent); stroke-width: 1.5; stroke-dasharray: 100; opacity: .6; transition: stroke-dashoffset .7s cubic-bezier(.16,1,.3,1); }
+.journey-vessel { color: var(--accent); transition: transform .7s cubic-bezier(.16,1,.3,1); }
+.journey-stop { position: absolute; display: flex; flex-direction: column; align-items: center; width: 25%; min-height: 70px; transform: translate(-50%, -18px); padding: 0 2px 6px; color: var(--muted); background: transparent; border: 0; font: inherit; cursor: pointer; }
+.journey-planet { position: relative; display: block; flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; margin-bottom: 12px; box-shadow: inset -7px -4px 0 #18253435; }
+.journey-planet-earth { background: radial-gradient(ellipse at 30% 25%, #8bb078 0 20%, transparent 22%), radial-gradient(ellipse at 65% 65%, #74a16e 0 23%, transparent 25%), #367caa; }
+.journey-planet-mars { width: 24px; height: 24px; margin-top: 3px; margin-bottom: 15px; background: radial-gradient(ellipse at 35% 60%, #a54f35 0 18%, transparent 22%), #cd7950; }
+.journey-planet-jupiter { width: 36px; height: 36px; margin-top: -3px; margin-bottom: 9px; background: linear-gradient(175deg, #c8a87b 0 18%, #f0dbb8 18% 30%, #b57d53 30% 43%, #dfbe95 43% 60%, #ab704c 60% 72%, #e6cba7 72% 85%, #ba9268 85%); }
+.journey-planet-saturn { background: #c4a368; }
+.journey-planet-saturn::after { content: ""; position: absolute; inset: 9px -12px; border: 3px solid #b38c50; border-radius: 50%; transform: rotate(-30deg); }
+.journey-stop[aria-pressed="true"] .journey-planet { outline: 1px solid var(--accent); outline-offset: 7px; }
+.journey-stop-year { font-size: 12px; line-height: 1.7; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--foreground); }
+.journey-stop-name { font-size: 11px; line-height: 1.5; }
+.journey-stop[aria-pressed="true"] :is(.journey-stop-year,.journey-stop-name), .journey-stop:hover .journey-stop-name { color: var(--accent); }
+.journey-map-caption { position: absolute; inset: auto 0 0; text-align: center; font-size: 11px; color: var(--muted); }
+.journey-reading { padding-block: 28px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.journey-milestone { min-height: 220px; }
+.journey-milestone h3 { font-size: clamp(22px, 2.2vw, 32px); font-weight: 600; letter-spacing: -.025em; line-height: 1.2; text-wrap: balance; }
+.journey-organization { font-size: 15px; color: var(--accent); margin-top: 14px; }
+.journey-milestone-meta { display: flex; flex-wrap: wrap; gap: 10px 20px; font-size: 11px; color: var(--muted); margin-top: 18px; }
+.journey-milestone-meta > span:last-child { border: 1px solid var(--line); border-radius: 4px; padding: 2px 6px; }
+.journey-description { max-width: 52ch; font-size: 14px; line-height: 1.8; color: var(--text-body); margin-top: 22px; }
+.journey-flight-controls { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 24px; }
+.journey-flight-controls p { font-size: 12px; font-variant-numeric: tabular-nums; }
+.journey-flight-controls p > span { color: var(--muted); }
+.journey-flight-controls > div { display: flex; gap: 8px; }
+.journey-flight-controls button { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--foreground); cursor: pointer; }
+.journey-flight-controls button:hover:not(:disabled) { color: var(--accent); border-color: var(--accent); }
+.journey-flight-controls button:disabled { opacity: .35; cursor: default; }
+.journey-previous { display: flex; transform: rotate(180deg); }
+:is(.journey-stop,.journey-flight-controls button):focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; border-radius: 6px; }
+@media (max-width: 700px) {
+  .screen-flow > .space-journey { display: flex; justify-content: flex-start; gap: 12px; }
+  .space-journey .journey-intro { display: block; }
+  .space-journey .journey-intro h2 { font-size: 30px; max-width: none; }
+  .space-journey .journey-intro > p { margin-top: 10px; max-width: 42ch; font-size: 12px; }
+  .journey-flight { grid-template-columns: 1fr; gap: 22px; flex-shrink: 0; }
+  .journey-map { max-width: 440px; }
+  .journey-stop-name { font-size: 10px; }
+  .journey-stop-year { font-size: 11px; }
+  .journey-map-caption { bottom: -8px; font-size: 10px; }
+  .journey-reading { padding-block: 20px; }
+  .journey-milestone { min-height: 0; }
+  .journey-milestone h3 { font-size: 24px; }
+  .journey-description { margin-top: 16px; font-size: 13px; }
+  .journey-flight-controls { margin-top: 20px; }
+}
+@media (prefers-reduced-motion: reduce) { .journey-vessel, .journey-route-traveled { transition: none; } }

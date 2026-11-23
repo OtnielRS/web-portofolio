@@ -10,6 +10,7 @@ import "./theme.css";
 import "./screen-flow.css";
 import "./_features/about/orbital-study.css";
 import "./_features/work/project-gallery.css";
+import "./_features/about/journey-section.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
