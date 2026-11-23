@@ -52,6 +52,8 @@ Contact: otnielrahadiyan@gmail.com. LinkedIn as printed: www.linkedin.com/in/otn
 
 Astronomy and the solar system are the user's requested theme. Preserve the name from app/page.tsx: Otniel Rahadiyan Sumantri.
 
+The header follows the user's subsequent reference: centered dark pill navigation with a thin muted-gold border, light labels, and a gold active page. It retains links to the four existing routes. Header styles use scoped global CSS because the current custom Tailwind Turbopack CSS loader does not provide the expected CSS-module class exports.
+
 ## Evidence on Hand
 
 app/page.tsx supplies the name. The user supplied C:/Users/Alice/Documents/Otniel Rahadiyan Sumantri - Resume.pdf as the reference for portfolio content. Its complete two-page text was extracted. Resume statements are user-provided evidence, not independent verification. The user subsequently provided actual Bastionfall, Hacktiv Chess, Animal Quiz and four Tempat Gosip screenshots, stored under public/projects. Tempat Gosip uses an AI-styled four-phone cover with all four original screenshots available in an expandable gallery. Alice Store retains illustrative artwork.
