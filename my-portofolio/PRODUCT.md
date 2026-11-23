@@ -52,7 +52,7 @@ Contact: otnielrahadiyan@gmail.com. LinkedIn as printed: www.linkedin.com/in/otn
 
 Astronomy and the solar system are the user's requested theme. Preserve the name from app/page.tsx: Otniel Rahadiyan Sumantri.
 
-The header follows the user's subsequent reference: centered dark pill navigation with a thin muted-gold border, light labels, and a gold active page. It retains links to the four existing routes. Header styles use scoped global CSS because the current custom Tailwind Turbopack CSS loader does not provide the expected CSS-module class exports.
+The header follows the user's pill-navigation reference, recolored to match the rest of the website: ivory surface, ink-blue labels, a subtle border, and solar-orange active and hover states. It stays visible at the top while scrolling and retains links to the four existing routes. Scroll offsets account for the sticky header. Header styles use scoped global CSS because the current custom Tailwind Turbopack CSS loader does not provide the expected CSS-module class exports.
 
 ## Evidence on Hand
 
