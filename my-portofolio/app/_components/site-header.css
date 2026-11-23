@@ -3,11 +3,13 @@
   top: 0;
   z-index: 20;
   flex-shrink: 0;
-  background: var(--background);
+  background: transparent;
+  pointer-events: none;
   padding: 21px 28px 28px;
 }
 
 .portfolio-navigation {
+  pointer-events: auto;
   display: flex;
   align-items: center;
   justify-content: space-around;
