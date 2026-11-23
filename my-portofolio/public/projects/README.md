@@ -1,5 +1,7 @@
 # Project images
 
+alice-store.jpg is a screenshot of https://alice-store.alicemorgan.my.id/ captured from its live homepage on 2026-11-23. It shows the Gaming slide, site navigation, store benefits, and the beginning of featured promotions. It replaces the original illustrative Alice Store cover.
+
 User-supplied screenshots, copied without visual modification:
 
 - animal-quiz.jpg: Animal Quiz Projecct.jpg

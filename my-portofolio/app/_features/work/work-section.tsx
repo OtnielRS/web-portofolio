@@ -16,8 +16,8 @@ export default function WorkSection({ standalone = false }: { standalone?: boole
       </div>
       <ProjectGallery />
       <p className="art-disclosure">
-        Bastionfall, Chess, and Animal Quiz show actual app screenshots. Tempat Gosip combines
-        four app screens in a styled mockup; originals are available above. Alice Store uses illustrative cover artwork.
+        Bastionfall, Chess, Animal Quiz, and Alice Store show actual app screenshots. Tempat Gosip combines
+        four app screens in a styled mockup; originals are available above.
       </p>
     </section>
   );
