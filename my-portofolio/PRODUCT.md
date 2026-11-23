@@ -18,6 +18,10 @@ A personal software developer portfolio presenting Otniel Rahadiyan Sumantri and
 
 Existing Next.js App Router and TypeScript project. The user requested a visual mockup before implementation and approved C, Work in orbit. The supplied resume is the source of truth for professional content. Do not invent professional claims or present generated project illustrations as actual screenshots.
 
+## Navigation and Code Organization
+
+The portfolio has dedicated Home (/), Work (/work), About (/about), and Contact (/contact) routes. A shared header and footer appear on every route; the logo and Home links return to /. The homepage retains its full overview. Route files compose reusable features under app/_features, while shared navigation and icons live under app/_components. Project data is maintained in app/_features/work/projects.ts.
+
 ## Professional Profile
 
 Junior Full-stack Developer based in Jakarta. Hands-on web and mobile development with JavaScript, TypeScript, React, Next.js, and Node.js. Project work covers APIs, authentication, AI-generated game narratives, and real-time multiplayer systems. Previous experience includes supporting 400+ seller accounts at Shopee.

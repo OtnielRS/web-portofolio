@@ -16,7 +16,16 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The portfolio has four routes: `/` (home), `/work`, `/about`, and `/contact`.
+
+`app/page.tsx` composes the homepage overview. Shared navigation, footer, and icons live in `app/_components/`. Feature code lives in `app/_features/`:
+
+- `home/`: introduction and interactive solar system
+- `work/`: project data, covers, cards, screenshot gallery, and work section
+- `about/`: biography, skills, education, and experience
+- `contact/`: contact section
+
+The route files in `app/work/`, `app/about/`, and `app/contact/` reuse those features. `app/layout.tsx` renders the shared header, main landmark, and footer on every page. Edit project information in `app/_features/work/projects.ts`.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
