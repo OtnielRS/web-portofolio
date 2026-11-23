@@ -5,7 +5,7 @@ export default function AboutSection({ standalone = false }: { standalone?: bool
 
   return (
     <section className="about-section" id="about" aria-labelledby="about-title">
-      <div className="container about-layout">
+      <div className="container about-layout" data-content-motion>
         <div>
           <Heading id="about-title">A little about<br />my orbit<span>.</span></Heading>
           <OrbitalStudy />

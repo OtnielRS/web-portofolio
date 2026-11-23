@@ -50,11 +50,11 @@ export default function JourneySection() {
   const destination = destinations[active];
   return (
     <section className="journey-section space-journey container" id="experience" aria-labelledby="journey-title">
-      <div className="journey-intro">
+      <div className="journey-intro" data-content-motion>
         <h2 id="journey-title">The journey so far<span>.</span></h2>
         <p>A different starting point. The same drive to figure things out.</p>
       </div>
-      <div className="journey-flight">
+      <div className="journey-flight" data-content-motion>
         <div className="journey-map" role="group" aria-label="Career flight path: select a milestone">
           <svg className="journey-chart" viewBox="0 0 520 360" aria-hidden="true">
             <g className="journey-stars">
@@ -82,10 +82,12 @@ export default function JourneySection() {
         </div>
         <div className="journey-reading">
           <div id="journey-milestone" className="journey-milestone" aria-live="polite" aria-atomic="true">
+            <div key={active} className="journey-entry">
             <h3>{entry.title}</h3>
             <p className="journey-organization">{entry.organization}</p>
             <div className="journey-milestone-meta"><span>{entry.date}</span><span>{entry.type}</span></div>
             <p className="journey-description">{entry.description}</p>
+            </div>
           </div>
           <div className="journey-flight-controls">
             <p>{destination.year} <span>selected</span></p>

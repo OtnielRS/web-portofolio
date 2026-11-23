@@ -6,7 +6,7 @@ export default function ContactSection({ standalone = false }: { standalone?: bo
   return (
     <section className="contact-section" id="contact" aria-labelledby="contact-title">
       <div className="container">
-        <div className="contact-top">
+        <div className="contact-top" data-content-motion>
           <Heading id="contact-title">Let’s build<br />something stellar<span>.</span></Heading>
           <div>
             <p>Have a developer role in mind?<br />I’d love to hear about your team.</p>
@@ -15,7 +15,7 @@ export default function ContactSection({ standalone = false }: { standalone?: bo
             </a>
           </div>
         </div>
-        <div className="contact-bottom">
+        <div className="contact-bottom" data-content-motion>
           <a className="email-link" href="mailto:otnielrahadiyan@gmail.com">
             otnielrahadiyan@gmail.com <Arrow diagonal />
           </a>

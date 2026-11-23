@@ -21,7 +21,7 @@ export default function ProgrammerScene() {
   }, []);
 
   return (
-    <figure className="programmer-scene" ref={sceneRef} data-animate={visible && !paused}>
+    <figure className="programmer-scene" ref={sceneRef} data-animate={visible && !paused} data-content-motion>
       <div className="pixel-studio"><PixelWorkspace /></div>
       <figcaption className="scene-caption">
         <span className="scene-caption-text"><span className="theme-icon-light">A little code. A little sunshine.</span><span className="theme-icon-dark">A little code. A little moonlight.</span></span>

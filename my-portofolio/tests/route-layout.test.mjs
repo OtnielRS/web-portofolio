@@ -65,7 +65,8 @@ test("layout mode follows the active route and normal route changes reset both s
   const calls = [];
   const window = { scrollY: 2400, location: { hash: "" }, scrollTo: options => calls.push(options) };
   const renderMain = load("app/_components/site-main.tsx", { window }, {
-    react: { useLayoutEffect: callback => { effect = callback; } },
+    react: { useLayoutEffect: callback => { effect = callback; }, useRef: () => ({ current: null }) },
+    "./use-content-motion": { default: () => {} },
     "next/navigation": { usePathname: () => path },
     "react/jsx-runtime": { jsx: (type, props) => ({ type, props }) },
   });

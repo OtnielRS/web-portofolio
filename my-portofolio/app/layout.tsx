@@ -14,6 +14,7 @@ import "./_features/work/project-gallery.css";
 import "./_features/about/journey-section.css";
 import "./_features/skills/skills-section.css";
 import "./_features/work/work-details.css";
+import "./content-motion.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

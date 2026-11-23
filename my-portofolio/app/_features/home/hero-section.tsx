@@ -5,7 +5,7 @@ import ProgrammerScene from "./programmer-scene";
 export default function HeroSection() {
   return (
     <section className="hero container" id="home" aria-labelledby="hero-title">
-      <div className="hero-copy">
+      <div className="hero-copy" data-content-motion>
         <h1 id="hero-title">Software developer.<br /><span>Curious by nature.</span></h1>
         <p>
           Hi, I’m <strong>Otniel Rahadiyan Sumantri.</strong><br />

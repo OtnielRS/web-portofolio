@@ -16,7 +16,7 @@ export default function scrollToSection(top: number, onComplete?: () => void) {
   root.style.scrollBehavior = "auto";
   const from = window.scrollY;
   const distance = top - from;
-  const duration = 1050;
+  const duration = Math.min(1400, 750 + Math.abs(distance) / 3);
   const started = performance.now();
   let frame = 0;
   const inputs = ["wheel", "touchstart", "pointerdown", "keydown"] as const;
@@ -31,8 +31,8 @@ export default function scrollToSection(top: number, onComplete?: () => void) {
 
   function tick(now: number) {
     const progress = Math.min((now - started) / duration, 1);
-    // Smooth acceleration and deceleration without lingering at the destination.
-    const eased = progress * progress * (3 - 2 * progress);
+    // Zero acceleration at both ends avoids a hard start or stop.
+    const eased = progress * progress * progress * (progress * (progress * 6 - 15) + 10);
     window.scrollTo({ top: from + distance * eased, left: 0, behavior: "instant" });
     if (progress < 1) frame = window.requestAnimationFrame(tick);
     else {

@@ -19,11 +19,13 @@ function nodes(root, predicate) {
 
 function mountPager(narrow = false) {
   const data = load("app/_features/work/projects.ts");
-  let selected = 0;
+  let selection = { index: 0, changed: false };
+  const requested = { current: 0 };
   const jsx = (type, props) => ({ type, props });
   const component = load("app/_features/work/project-carousel.tsx", {
     "react/jsx-runtime": { jsx, jsxs: jsx },
-    react: { useState: () => [selected, value => { selected = value; }], useSyncExternalStore: () => narrow },
+    react: { useState: () => [selection, value => { selection = value; }], useSyncExternalStore: () => narrow, useRef: () => requested },
+    "@/app/_components/use-project-motion": { default: () => ({ pageRef: { current: null }, transitionTo: (key, commit) => commit() }) },
     "./projects": data,
     "./project-card": { default: "ProjectCard" },
     "@/app/_components/arrow": { default: "Arrow" },

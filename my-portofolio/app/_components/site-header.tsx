@@ -37,12 +37,13 @@ export default function SiteHeader() {
           <ellipse cx="490" cy="30" rx="470" ry="23" />
           <path d="M30 30H930" />
         </svg>
-        {navigation.map(({ href, label, sectionId }) => (
+        {navigation.map(({ href, label, sectionId }, index) => (
           <SectionLink
             key={href}
             pageHref={href === "/" ? "/#home" : href}
             sectionId={sectionId}
             className="portfolio-navigation-link"
+            style={{ animationDelay: `${index * 60}ms` }}
             aria-current={activeHref === href ? ((pathname === "/" && href !== "/") || href.includes("#") ? "location" : "page") : undefined}
           >
             <span className={`navigation-planet navigation-planet-${sectionId}`} aria-hidden="true" />

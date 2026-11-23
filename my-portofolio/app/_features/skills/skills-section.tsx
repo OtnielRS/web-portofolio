@@ -27,7 +27,7 @@ export default function SkillsSection({ standalone = false }: { standalone?: boo
 
   return (
     <section className="skills-section container" id="skills" aria-labelledby="skills-title" data-expanded={expanded}>
-      <div className="skills-heading">
+      <div className="skills-heading" data-content-motion>
         <div>
         <Heading id="skills-title">Skills<span>.</span></Heading>
         <p>The technologies I work with, from the interface to the API.</p>
@@ -47,9 +47,9 @@ export default function SkillsSection({ standalone = false }: { standalone?: boo
           <p role="status">Showing {visibleCount} of {total} skills{environment === "All" ? " across all environments." : ` in ${environment}.`}</p>
         </div>
       )}
-      <div className={`skill-catalog ${expanded ? "skill-catalog-expanded" : "skill-catalog-overview"}`} id={catalogId} ref={catalogRef} role="region" aria-label={expanded ? "Complete skills catalogue" : "Skills overview"} tabIndex={0}>
+      <div key={`${expanded}-${environment}`} className={`skill-catalog ${expanded ? "skill-catalog-expanded" : "skill-catalog-overview"}`} id={catalogId} ref={catalogRef} role="region" aria-label={expanded ? "Complete skills catalogue" : "Skills overview"} tabIndex={0}>
         {groups.map(group => (
-          <div className="skill-environment" key={group.name}>
+          <div className="skill-environment" key={group.name} data-content-motion>
             <div className="skill-environment-heading"><h3>{group.name}</h3><span>{group.skills.length} skills</span></div>
             <ul>
               {group.skills.slice(0, expanded ? undefined : 2).map(skill => (
