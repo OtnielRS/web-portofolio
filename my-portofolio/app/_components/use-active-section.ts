@@ -5,20 +5,19 @@ import { useEffect, useState } from "react";
 type SectionLink = { href: string; sectionId: string };
 
 export default function useActiveSection(pathname: string, sections: readonly SectionLink[]) {
-  const [activeSection, setActiveSection] = useState("/");
+  const [activeSection, setActiveSection] = useState({ pathname: "/", href: "/" });
 
   useEffect(() => {
-    if (pathname !== "/") return;
-
     let frame = 0;
 
     function updateActiveSection() {
       frame = 0;
       const headerBottom = document.querySelector(".portfolio-header")?.getBoundingClientRect().bottom ?? 0;
       const readingLine = headerBottom + Math.min(120, window.innerHeight * .15);
-      let current = "/";
+      const available = sections.filter(section => document.getElementById(section.sectionId));
+      let current = available[0]?.href ?? pathname;
 
-      for (const section of sections) {
+      for (const section of available) {
         const element = document.getElementById(section.sectionId);
         if (element && element.getBoundingClientRect().top <= readingLine) {
           current = section.href;
@@ -27,10 +26,10 @@ export default function useActiveSection(pathname: string, sections: readonly Se
 
       // The final section may be too short to reach the reading line before the page ends.
       if (window.scrollY > 0 && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4) {
-        current = sections[sections.length - 1]?.href ?? current;
+        current = available[available.length - 1]?.href ?? current;
       }
 
-      setActiveSection(current);
+      setActiveSection(previous => previous.pathname === pathname && previous.href === current ? previous : { pathname, href: current });
     }
 
     function scheduleUpdate() {
@@ -48,5 +47,5 @@ export default function useActiveSection(pathname: string, sections: readonly Se
     };
   }, [pathname, sections]);
 
-  return pathname === "/" ? activeSection : pathname;
+  return activeSection.pathname === pathname ? activeSection.href : pathname;
 }

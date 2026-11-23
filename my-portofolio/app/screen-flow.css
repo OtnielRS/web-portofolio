@@ -64,7 +64,7 @@ body:has(.screen-flow > .contact-section:last-child) > .site-footer { color: #c8
   .screen-flow .programmer-scene { max-width: 520px; }
 }
 @media(max-width:700px) {
-  :root { --header-height: 90px; }
+  :root { --header-height: 110px; }
   .screen-flow > .hero { padding-block: calc(var(--header-height) + 18px) 18px; gap: 0; grid-template-rows: auto minmax(0,1fr); }
   .screen-flow .hero h1 { font-size: clamp(27px,7.2vw,42px); }
   .screen-flow .hero-copy > p { margin-top: 14px; font-size: 12px; line-height: 1.65; }

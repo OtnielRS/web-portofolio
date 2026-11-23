@@ -14,7 +14,7 @@ export default function SectionLink({ sectionId, pageHref, ...props }: SectionLi
   const pathname = usePathname();
 
   function handleClick(event: MouseEvent<HTMLAnchorElement>) {
-    if (pathname !== "/" || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || (props.target && props.target !== "_self")) return;
+    if ((pathname !== "/" && pathname !== pageHref.split("#")[0]) || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || (props.target && props.target !== "_self")) return;
     const section = document.getElementById(sectionId);
     if (!section) return;
 

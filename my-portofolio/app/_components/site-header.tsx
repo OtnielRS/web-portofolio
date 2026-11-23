@@ -9,6 +9,7 @@ const navigation = [
   { href: "/", label: "Home", sectionId: "home" },
   { href: "/work", label: "Work", sectionId: "work" },
   { href: "/about", label: "About", sectionId: "about" },
+  { href: "/about#experience", label: "Experience", sectionId: "experience" },
   { href: "/contact", label: "Contact", sectionId: "contact" },
 ];
 
@@ -29,7 +30,7 @@ export default function SiteHeader() {
             pageHref={href === "/" ? "/#home" : href}
             sectionId={sectionId}
             className="portfolio-navigation-link"
-            aria-current={activeHref === href ? (pathname === "/" && href !== "/" ? "location" : "page") : undefined}
+            aria-current={activeHref === href ? ((pathname === "/" && href !== "/") || href.includes("#") ? "location" : "page") : undefined}
           >
             <span className={`navigation-planet navigation-planet-${sectionId}`} aria-hidden="true" />
             <span className="navigation-label">{label}

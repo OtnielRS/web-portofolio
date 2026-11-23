@@ -41,7 +41,7 @@ function render({ pathname = "/", reduced = false, sectionId = "work" } = {}) {
     document,
     window,
   });
-  const link = exports.default({ sectionId, pageHref: sectionId === "home" ? "/#home" : `/${sectionId}`, children: "Navigate" });
+  const link = exports.default({ sectionId, pageHref: sectionId === "home" ? "/#home" : sectionId === "experience" ? "/about#experience" : `/${sectionId}`, children: "Navigate" });
   const event = { button: 0, metaKey: false, ctrlKey: false, shiftKey: false, altKey: false, preventDefault: () => calls.push({ kind: "prevent" }) };
   return { link, event, calls, style, listeners, advance: time => frame?.(time) };
 }
@@ -93,4 +93,18 @@ test("manual input cancels the flight and restores scroll snapping", () => {
   assert.equal(calls.length, count);
   assert.equal(style.scrollSnapType, "");
   assert.equal(listeners.size, 0);
+});
+
+test("Experience links scroll locally on Home and About and retain their dedicated fallback", () => {
+  for (const pathname of ["/", "/about"]) {
+    const { link, event, calls, advance } = render({ pathname, sectionId: "experience" });
+    assert.equal(link.props.href, pathname === "/" ? "/#experience" : "/about#experience");
+    link.props.onClick(event);
+    advance(1050);
+    assert.equal(calls.at(-1).top, 900);
+  }
+  const work = render({ pathname: "/work", sectionId: "experience" });
+  assert.equal(work.link.props.href, "/about#experience");
+  work.link.props.onClick(work.event);
+  assert.equal(work.calls.length, 0);
 });
