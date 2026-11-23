@@ -1,0 +1,75 @@
+:root {
+  color-scheme: light;
+  --surface-soft: #edeade;
+  --surface-alt: #eae9df;
+  --text-secondary: #475461;
+  --text-body: #4d5a61;
+  --on-accent: #fff;
+  --accent-hover: #9d391b;
+  --contact-ground: #182a31;
+  --selection: #e9b89c;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #131d29;
+  --foreground: #e5e9e8;
+  --accent: #efb18a;
+  --muted: #aab8c4;
+  --line: #3b4c5c;
+  --surface-soft: #263440;
+  --surface-alt: #1c2a38;
+  --text-secondary: #bbc7ce;
+  --text-body: #b7c5cf;
+  --on-accent: #182534;
+  --accent-hover: #f6c7a8;
+  --contact-ground: #0d1722;
+  --selection: #644a3c;
+}
+
+::selection { background: var(--selection); color: var(--foreground); }
+.skip-link { color: var(--background); }
+html { scrollbar-color: var(--muted) var(--background); }
+body, .portfolio-navigation, .about-section, .pixel-studio {
+  transition: background-color .25s, color .25s, border-color .25s;
+}
+.hero-copy > p, .tags li { color: var(--text-secondary); }
+.about-content > p, .skills p { color: var(--text-body); }
+.about-section { background: var(--surface-alt); }
+.skills, .tags li, .about-orbit { border-color: var(--line); }
+.button-primary { color: var(--on-accent); }
+.button-primary:hover { background: var(--accent-hover); }
+.button-secondary { border-color: var(--line); }
+.button-secondary:hover, .portfolio-navigation-link:hover { background: var(--surface-soft); }
+.contact-section { background: var(--contact-ground); }
+
+.theme-icon-dark { display: none; }
+[data-theme="dark"] .theme-icon-light { display: none; }
+[data-theme="dark"] .theme-icon-dark { display: inline; }
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  margin-left: 8px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface-soft);
+  color: var(--foreground);
+  cursor: pointer;
+}
+.theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+.theme-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media(max-width:700px) {
+  .portfolio-navigation-link { padding-inline: 10px; }
+  .theme-toggle { width: 38px; height: 38px; margin-left: 4px; }
+}
+@media(max-width:400px) {
+  .portfolio-navigation-link { padding-inline: 8px; }
+  .theme-toggle { width: 36px; height: 36px; margin-left: 2px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  body, .portfolio-navigation, .about-section, .pixel-studio { transition: none; }
+}

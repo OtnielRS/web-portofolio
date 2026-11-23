@@ -1,0 +1,208 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-23T06:56:06.954Z",
+  "title": "Design System: Otniel Rahadiyan Sumantri Portfolio",
+  "extensions": {
+    "screenFlow": {
+      "sectionHeight": "100svh",
+      "headerHeight": { "desktop": "109px", "mobile": "90px" },
+      "verticalSnap": "y mandatory",
+      "reducedMotionSnap": "y proximity",
+      "projectCardsPerScreen": { "desktop": 2, "mobile": 1 },
+      "mobileBreakpoint": "700px"
+    },
+    "colorMeta": {
+      "accent": {
+        "role": "primary",
+        "displayName": "Solar orange"
+      },
+      "background": {
+        "role": "neutral",
+        "displayName": "Ivory paper"
+      },
+      "foreground": {
+        "role": "neutral",
+        "displayName": "Ink blue"
+      },
+      "dark-accent": {
+        "role": "primary",
+        "displayName": "Warm night accent"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Hero",
+        "purpose": "Homepage introduction; responsive sizes are recorded in DESIGN.md."
+      },
+      "body": {
+        "displayName": "Hero paragraph",
+        "purpose": "Introductory prose."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "theme-surfaces",
+        "value": "background-color .25s, color .25s, border-color .25s",
+        "purpose": "Body, navigation, About and scene; disabled for reduced motion."
+      },
+      {
+        "name": "button-state",
+        "value": "background .2s, color .2s",
+        "purpose": "Action hover states."
+      },
+      {
+        "name": "project-image",
+        "value": "transform .6s cubic-bezier(.16,1,.3,1)",
+        "purpose": "Scale to 1.025 on image-link hover."
+      },
+      {
+        "name": "typing",
+        "value": ".45s steps(2, end) infinite",
+        "purpose": "Opposed left/right hands."
+      },
+      {
+        "name": "breathing",
+        "value": "4s steps(2, end) infinite",
+        "purpose": "One-pixel head movement."
+      },
+      {
+        "name": "clouds",
+        "value": "12s steps(12, end) infinite alternate",
+        "purpose": "Eight-pixel horizontal cloud travel."
+      },
+      {
+        "name": "cursor",
+        "value": "1.3s steps(1, end) infinite",
+        "purpose": "Cursor blink."
+      },
+      {
+        "name": "steam",
+        "value": "3s steps(6, end) infinite",
+        "purpose": "Mug steam opacity and vertical movement."
+      },
+      {
+        "name": "stars",
+        "value": "4s steps(3, end) infinite",
+        "purpose": "Night twinkle with staggered delays."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact-desktop",
+        "value": "1100px"
+      },
+      {
+        "name": "stacked",
+        "value": "700px"
+      },
+      {
+        "name": "small-phone-navigation",
+        "value": "400px"
+      }
+    ],
+    "sources": [
+      "app/globals.css",
+      "app/theme.css",
+      "app/_components/site-header.css",
+      "app/_components/theme-config.ts",
+      "app/_components/use-theme.ts",
+      "app/_components/theme-toggle.tsx",
+      "app/_features/home/programmer-scene.css",
+      "app/_features/home/programmer-scene.tsx",
+      "app/_features/home/pixel-workspace.tsx"
+    ],
+    "evidence": {
+      "visualReview": [
+        ".impeccable/review/pixel-desktop-light.jpg",
+        ".impeccable/review/pixel-desktop-dark.jpg",
+        ".impeccable/review/pixel-mobile-dark.jpg"
+      ],
+      "mobileViewport": "595px; no exact 390px visual evidence"
+    },
+    "theme": {
+      "selector": ":root[data-theme=\"dark\"]",
+      "default": "light",
+      "storageKey": "portfolio-theme",
+      "bootstrap": "Inline head script restores explicit storage preference before hydration.",
+      "fallback": "Current page switching remains usable if storage is blocked."
+    },
+    "accessibility": {
+      "motion": "Pause control; IntersectionObserver and document visibility suspension; reduced motion removes animations/transitions and smooth scrolling.",
+      "scene": "SVG title and description; crisp rect/path geometry; no raster runtime artwork.",
+      "theme": "Named switch with aria-checked.",
+      "focus": "Accent outlines and skip-to-main link."
+    }
+  },
+  "components": [
+    {
+      "name": "Primary action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Accent action used for primary destinations.",
+      "html": "<a class=\"ds-primary\" href=\"#work\">Explore my work</a>",
+      "css": ".ds-primary{display:inline-flex;align-items:center;justify-content:center;min-height:49px;padding:13px 20px;border-radius:5px;background:var(--accent);color:var(--on-accent);font:600 13px var(--font-geist-sans),sans-serif;text-decoration:none;transition:background .2s,color .2s}.ds-primary:hover{background:var(--accent-hover)}.ds-primary:focus-visible{outline:3px solid var(--accent);outline-offset:6px}"
+    },
+    {
+      "name": "Secondary action",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Outlined companion action.",
+      "html": "<a class=\"ds-secondary\" href=\"#contact\">Get in touch</a>",
+      "css": ".ds-secondary{display:inline-flex;align-items:center;justify-content:center;min-height:49px;padding:13px 20px;border:1px solid var(--line);border-radius:5px;color:var(--foreground);font:600 13px var(--font-geist-sans),sans-serif;text-decoration:none;transition:background .2s,color .2s}.ds-secondary:hover{background:var(--surface-soft)}.ds-secondary:focus-visible{outline:3px solid var(--accent);outline-offset:6px}"
+    },
+    {
+      "name": "Pill navigation",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Shared sticky header navigation; current route/section uses accent.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Main navigation\"><a href=\"/\" aria-current=\"page\">Home</a><a href=\"/work\">Work</a><a href=\"/about\">About</a><a href=\"/contact\">Contact</a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;justify-content:space-around;width:min(100%,1000px);min-height:60px;padding:4px 18px;border:1px solid var(--line);border-radius:999px;background:var(--background);font-family:var(--font-geist-sans),sans-serif}.ds-nav a{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:10px 24px;border-radius:999px;color:var(--foreground);font-size:18px;font-weight:550;line-height:1.4;letter-spacing:.06em;text-decoration:none;transition:color .2s,background-color .2s}.ds-nav a[aria-current],.ds-nav a:hover{color:var(--accent)}.ds-nav a:hover{background:var(--surface-soft)}.ds-nav a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}"
+    },
+    {
+      "name": "Technology tag",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Noninteractive wrapping project metadata.",
+      "html": "<span class=\"ds-tag\">TypeScript</span>",
+      "css": ".ds-tag{display:inline-block;border:1px solid var(--line);border-radius:4px;padding:5px 8px;color:var(--text-secondary);font:9px var(--font-geist-sans),sans-serif}"
+    },
+    {
+      "name": "Project text card",
+      "kind": "card",
+      "description": "Unboxed project typography beneath supplied imagery; excerpt uses actual project data.",
+      "html": "<article class=\"ds-project\"><h3><a href=\"https://bastionfall.alicemorgan.my.id\">Bastionfall</a></h3><p class=\"ds-kind\">Fantasy City Defense Game</p></article>",
+      "css": ".ds-project{font-family:var(--font-geist-sans),sans-serif;color:var(--foreground)}.ds-project h3{font-size:25px;line-height:1.2;font-weight:600;letter-spacing:-.025em;margin:9px 0 0}.ds-project a{color:inherit;text-decoration:none}.ds-project a:hover{color:var(--accent)}.ds-project a:focus-visible{outline:3px solid var(--accent);outline-offset:6px}.ds-kind{font-size:12px;color:var(--accent);margin:8px 0 0}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Work in orbit",
+    "overview": "Spacious developer work on warm paper with ink typography and solar accents. The current hero uses a cozy day/night pixel programmer workspace.",
+    "keyCharacteristics": [
+      "Roomy editorial spacing",
+      "Flat tonal surfaces and thin borders",
+      "Crisp SVG pixel illustration",
+      "Shared light/dark theme"
+    ],
+    "rules": [
+      {
+        "name": "The Semantic Theme Rule",
+        "body": "Use shared semantic colors; dark mode changes their root values.",
+        "section": "colors"
+      },
+      {
+        "name": "The Flat Surface Rule",
+        "body": "Use tonal fields, thin borders and image clipping rather than UI box shadows.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do preserve original project screenshot colors.",
+      "Do retain scene pause and reduced-motion behavior."
+    ],
+    "donts": [
+      "Don't present generated imagery as actual project screenshots.",
+      "Don't treat local pixel material colors as general UI roles."
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+.orbital-study { width: 280px; max-width: 100%; margin: 32px 0 0; }
+.orbital-study svg { display: block; width: 100%; height: auto; overflow: visible; }
+.orbital-night { display: none; }
+[data-theme="dark"] .orbital-day { display: none; }
+[data-theme="dark"] .orbital-night { display: inline; }
+.orbital-study figcaption { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 11px; line-height: 1.6; color: var(--muted); }
+.orbital-study button { min-width: 44px; min-height: 44px; border: 0; padding: 8px; background: transparent; color: var(--muted); font-size: 11px; cursor: pointer; }
+.orbital-study button:hover { color: var(--accent); }
+@media(max-width:700px) {
+  .about-layout > div:first-child { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .orbital-study { width: 130px; margin: 0; flex-shrink: 0; }
+  .orbital-study figcaption { flex-wrap: wrap; justify-content: center; gap: 0 8px; font-size: 11px; }
+}
+@media(prefers-reduced-motion:reduce) { .orbital-study button { display: none; } }
