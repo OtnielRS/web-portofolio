@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import useActiveSection from "./use-active-section";
 import ThemeToggle from "./theme-toggle";
+import HomeLink from "./home-link";
 
 const navigation = [
   { href: "/", label: "Home", sectionId: "home" },
@@ -20,7 +21,11 @@ export default function SiteHeader() {
     <header className="portfolio-header">
       <nav className="portfolio-navigation" aria-label="Main navigation">
         {navigation.map(({ href, label }) => (
-          <Link
+          href === "/" ? (
+            <HomeLink key={href} className="portfolio-navigation-link" aria-current={activeHref === "/" ? "page" : undefined}>
+              {label}
+            </HomeLink>
+          ) : <Link
             key={href}
             href={href}
             className="portfolio-navigation-link"

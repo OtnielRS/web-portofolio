@@ -1,4 +1,4 @@
-import Link from "next/link";
+import HomeLink from "./home-link";
 import Arrow from "./arrow";
 
 export default async function SiteFooter() {
@@ -8,7 +8,7 @@ export default async function SiteFooter() {
     <footer className="container site-footer">
       <span>© {new Date().getFullYear()} Otniel Rahadiyan Sumantri</span>
       <span>Built with curiosity. Grounded on Earth.</span>
-      <Link href="/">Home <Arrow /></Link>
+      <HomeLink>Home <Arrow /></HomeLink>
     </footer>
   );
 }
