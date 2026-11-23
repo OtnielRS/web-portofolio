@@ -8,6 +8,7 @@ import "./_components/site-header.css";
 import "./_features/home/programmer-scene.css";
 import "./theme.css";
 import "./screen-flow.css";
+import "./_features/about/orbital-study.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

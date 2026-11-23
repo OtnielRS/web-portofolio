@@ -146,6 +146,8 @@ Rectangular content uses modest rounded corners: tags, buttons, project imagery 
 
 ## Full-screen section flow
 
+The About graphic is a (280 × 180) SVG orbital study. Its tilted ellipse pairs a warm Sun with orbiting Earth in light mode and a blue Earth with an orbiting cratered Moon in dark mode. The existing theme attribute selects the pair. Orbital motion loops over (18s / 12s), with a pause button and visibility/reduced-motion suspension. At (700px) or narrower it scales to (130px) beside the About heading.
+
 Feature sections use (100svh), vertical mandatory snapping, and `scroll-snap-stop: always`. The transparent header is fixed over the current screen; content reserves (109px) above it on desktop and (90px) at widths up to (700px). The final screen reserves footer space. Reduced-motion users get proximity snapping and instant navigation.
 
 Projects use a horizontal snapping carousel: two cards per desktop viewport and one at (700px) or narrower. Previous/next buttons, a visible range counter, horizontal scrolling, and keyboard access expose all five projects. Screenshot height is capped at (27svh / 250px) on desktop and (23svh / 210px) on smaller screens. Narrow or short screens preserve text through internal scrolling rather than clipping it. The detailed Work page retains its expandable original-screen gallery.

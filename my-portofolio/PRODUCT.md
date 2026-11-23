@@ -32,6 +32,8 @@ The user requested replacing the hero solar-system illustration with a pixel-sty
 
 The scene is live SVG pixel artwork with stepped typing, breathing, cloud, steam, and star animations, not a GIF. It provides a pause control, pauses when offscreen or the document is hidden, and disables nonessential motion for reduced-motion users. Existing downloadable solar-system assets remain available separately. Original project screenshots retain their real colors in either site theme.
 
+The About orbital graphic also follows the shared theme: Earth orbits the Sun in light mode (18-second illustrative loop), while the Moon orbits Earth in dark mode (12-second loop). It provides its own pause control and pauses offscreen, in hidden tabs, and for reduced-motion preferences. Orbital sizes and speeds are illustrative.
+
 ## Professional Profile
 
 Junior Full-stack Developer based in Jakarta. Hands-on web and mobile development with JavaScript, TypeScript, React, Next.js, and Node.js. Project work covers APIs, authentication, AI-generated game narratives, and real-time multiplayer systems. Previous experience includes supporting 400+ seller accounts at Shopee.

@@ -1,3 +1,5 @@
+import OrbitalStudy from "./orbital-study";
+
 export default function AboutSection({ standalone = false }: { standalone?: boolean }) {
   const Heading = standalone ? "h1" : "h2";
 
@@ -6,7 +8,7 @@ export default function AboutSection({ standalone = false }: { standalone?: bool
       <div className="container about-layout">
         <div>
           <Heading id="about-title">A little about<br />my orbit<span>.</span></Heading>
-          <div className="about-orbit" aria-hidden="true"><span /><i /><i /></div>
+          <OrbitalStudy />
         </div>
         <div className="about-content">
           <p className="about-lead">I like understanding how things work.<br />Then building something that works better.</p>
