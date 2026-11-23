@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Arrow from "@/app/_components/arrow";
-import SolarSystem from "./solar-system";
+import ProgrammerScene from "./programmer-scene";
 
 export default function HeroSection() {
   return (
@@ -19,7 +19,7 @@ export default function HeroSection() {
         </div>
         <div className="hero-location"><span className="location-dot" />Based on Earth. Jakarta, to be precise.</div>
       </div>
-      <SolarSystem />
+      <ProgrammerScene />
     </section>
   );
 }

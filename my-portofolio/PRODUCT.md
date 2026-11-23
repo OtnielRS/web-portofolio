@@ -24,6 +24,12 @@ The portfolio has dedicated Home (/), Work (/work), About (/about), and Contact 
 
 On the homepage, the orange navigation highlight follows the visible section during scrolling; the journey section belongs to About. Dedicated routes highlight their current page. Navigation links still open their dedicated pages.
 
+## Theme and Homepage Scene
+
+The user requested replacing the hero solar-system illustration with a pixel-style animated programmer workspace. Light mode shows a sun and daytime room; dark mode shows a moon, stars, and night lighting. Both the header switch and the scene toggle control the entire website. Light is the default, and the visitor's explicit preference persists in localStorage across navigation and reloads. If browser storage is unavailable, switching still works for the current page session.
+
+The scene is live SVG pixel artwork with stepped typing, breathing, cloud, steam, and star animations, not a GIF. It provides a pause control, pauses when offscreen or the document is hidden, and disables nonessential motion for reduced-motion users. Existing downloadable solar-system assets remain available separately. Original project screenshots retain their real colors in either site theme.
+
 ## Professional Profile
 
 Junior Full-stack Developer based in Jakarta. Hands-on web and mobile development with JavaScript, TypeScript, React, Next.js, and Node.js. Project work covers APIs, authentication, AI-generated game narratives, and real-time multiplayer systems. Previous experience includes supporting 400+ seller accounts at Shopee.

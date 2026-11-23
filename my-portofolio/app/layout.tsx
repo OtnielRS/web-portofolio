@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import SiteHeader from "./_components/site-header";
 import SiteFooter from "./_components/site-footer";
+import { themeBootstrap } from "./_components/theme-config";
 import "./globals.css";
 import "./_components/site-header.css";
+import "./_features/home/programmer-scene.css";
+import "./theme.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,8 +27,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      data-theme="light"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head><script dangerouslySetInnerHTML={{ __html: themeBootstrap }} /></head>
       <body className="min-h-full flex flex-col">
         <a className="skip-link" href="#main">Skip to content</a>
         <SiteHeader />

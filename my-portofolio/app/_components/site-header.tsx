@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import useActiveSection from "./use-active-section";
+import ThemeToggle from "./theme-toggle";
 
 const navigation = [
   { href: "/", label: "Home", sectionId: "home" },
@@ -28,6 +29,7 @@ export default function SiteHeader() {
             {label}
           </Link>
         ))}
+        <ThemeToggle compact />
       </nav>
     </header>
   );

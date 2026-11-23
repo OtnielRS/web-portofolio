@@ -42,3 +42,4 @@ next-env.d.ts
 
 # local design-tool execution state
 /.impeccable/build/
+/.impeccable/review/
