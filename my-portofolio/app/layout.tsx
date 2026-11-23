@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata, site } from "./_lib/metadata";
 import { Geist, Geist_Mono } from "next/font/google";
 import SiteHeader from "./_components/site-header";
 import SiteFooter from "./_components/site-footer";
@@ -27,8 +28,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Otniel Rahadiyan Sumantri · Software Developer",
-  description: "Junior full-stack developer based in Jakarta. Explore Otniel’s web, mobile, real-time, and AI-powered projects, built with TypeScript, React, Next.js, and Node.js.",
+  ...pageMetadata(site.title, site.description),
+  applicationName: "Otniel's Portfolio",
+  authors: [{ name: site.name, url: "https://github.com/OtnielRS" }],
+  creator: site.name,
+  keywords: [site.name, "software developer", "full-stack developer", "TypeScript", "React", "Next.js", "Jakarta"],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
