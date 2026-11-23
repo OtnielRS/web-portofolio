@@ -7,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function WorkPage() {
-  return <div className="page-content"><WorkSection standalone /></div>;
+  return <div className="page-content screen-flow"><WorkSection standalone screen /></div>;
 }

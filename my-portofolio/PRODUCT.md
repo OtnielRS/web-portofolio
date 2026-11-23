@@ -24,6 +24,8 @@ The portfolio has dedicated Home (/), Work (/work), About (/about), and Contact 
 
 On the homepage, navigation buttons and Explore my work smoothly scroll to their matching sections; Home returns to the actual page top. The orange highlight follows the visible section, and the journey belongs to About. Dedicated routes highlight their current page and retain normal links between pages. Reduced-motion visitors receive instant scrolling, and modified clicks retain normal browser behavior.
 
+Each feature section occupies one viewport and uses vertical scroll snapping: Home, Work, About, Experience, Contact. The fixed transparent header floats above each screen with reserved content padding. Work uses a horizontal carousel with two project cards on desktop and one on smaller screens, explicit previous/next controls, and access to all five projects. The Work route retains the original screenshot gallery. Long text can scroll within its screen when necessary. The shared footer sits at the bottom of the final screen. Reduced-motion mode uses proximity snapping rather than mandatory snapping.
+
 ## Theme and Homepage Scene
 
 The user requested replacing the hero solar-system illustration with a pixel-style animated programmer workspace. Light mode shows a sun and daytime room; dark mode shows a moon, stars, and night lighting. Both the header switch and the scene toggle control the entire website. Light is the default, and the visitor's explicit preference persists in localStorage across navigation and reloads. If browser storage is unavailable, switching still works for the current page session.

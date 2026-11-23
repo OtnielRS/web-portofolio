@@ -3,6 +3,14 @@
   "generatedAt": "2026-11-23T06:56:06.954Z",
   "title": "Design System: Otniel Rahadiyan Sumantri Portfolio",
   "extensions": {
+    "screenFlow": {
+      "sectionHeight": "100svh",
+      "headerHeight": { "desktop": "109px", "mobile": "90px" },
+      "verticalSnap": "y mandatory",
+      "reducedMotionSnap": "y proximity",
+      "projectCardsPerScreen": { "desktop": 2, "mobile": 1 },
+      "mobileBreakpoint": "700px"
+    },
     "colorMeta": {
       "accent": {
         "role": "primary",

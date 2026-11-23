@@ -33,6 +33,8 @@ Run `npm run test:theme` to check saved preferences, pre-hydration theme initial
 
 Homepage navigation and Explore my work animate to the matching sections with sticky-header clearance. Home scrolls to the actual top. On dedicated routes, navigation still opens the corresponding pages. Run `npm run test:navigation` to verify scrolling, reduced-motion behavior, and normal browser link handling.
 
+`app/screen-flow.css` gives each feature section a full viewport and snaps vertical scrolling between screens. The header floats over reserved space at the top, and the footer is anchored to the final screen. The Work section uses `project-carousel.tsx` to show two cards on desktop or one on smaller screens; its arrows, horizontal scrolling, and keyboard navigation keep all projects accessible. Text-heavy sections allow internal scrolling when needed. Reduced-motion preferences soften snapping and disable animated scrolling.
+
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## Learn More

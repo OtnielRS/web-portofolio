@@ -7,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
-  return <div className="contact-page"><ContactSection standalone /></div>;
+  return <div className="screen-flow"><ContactSection standalone /></div>;
 }

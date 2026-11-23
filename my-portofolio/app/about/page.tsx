@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="page-content">
+    <div className="page-content screen-flow">
       <AboutSection standalone />
       <JourneySection />
     </div>

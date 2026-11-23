@@ -6,12 +6,12 @@ import ContactSection from "./_features/contact/contact-section";
 
 export default function HomePage() {
   return (
-    <>
+    <div className="screen-flow">
       <HeroSection />
-      <WorkSection />
+      <WorkSection screen />
       <AboutSection />
       <JourneySection />
       <ContactSection />
-    </>
+    </div>
   );
 }

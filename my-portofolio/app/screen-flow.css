@@ -1,0 +1,90 @@
+:root { --header-height: 109px; }
+html:has(.screen-flow) {
+  scroll-snap-type: y mandatory;
+  scroll-padding-top: 0;
+}
+body:has(.screen-flow) { position: relative; }
+body:has(.screen-flow) > .portfolio-header { position: fixed; left: 0; right: 0; }
+.screen-flow > section {
+  height: 100svh;
+  min-height: 0;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+.screen-flow > .hero { padding-block: calc(var(--header-height) + 28px) 28px; align-items: center; }
+.screen-flow > .work-section { padding-block: calc(var(--header-height) + 24px) 24px; border-top: 0; }
+.screen-flow > .about-section { padding-block: calc(var(--header-height) + 36px) 36px; display: flex; align-items: center; }
+.screen-flow.page-content > .about-section { margin-top: 0; }
+.screen-flow .about-layout { max-height: 100%; overflow-y: auto; padding-block: 2px; }
+.screen-flow > .journey-section { padding-block: calc(var(--header-height) + 36px) 36px; align-items: center; }
+.screen-flow .journey-list { max-height: 100%; overflow-y: auto; }
+.screen-flow > .contact-section { display: flex; align-items: center; padding-block: calc(var(--header-height) + 32px) 100px; }
+.screen-flow > section:last-child { padding-bottom: 90px; }
+body:has(.screen-flow) > .site-footer { position: absolute; bottom: 0; left: 0; right: 0; color: var(--muted); }
+body:has(.screen-flow > .contact-section:last-child) > .site-footer { color: #c8d2d0; }
+.screen-work { display: flex; flex-direction: column; }
+.screen-work .section-heading { flex-shrink: 0; margin-bottom: 20px; }
+.project-carousel { min-height: 0; flex: 1; display: flex; flex-direction: column; }
+.project-carousel-track {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  gap: 28px;
+  flex: 1;
+  min-height: min(300px,42svh);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+  padding-bottom: 8px;
+}
+.project-carousel-track > .project { flex: 0 0 calc((100% - 28px) / 2); min-width: 0; overflow-y: auto; scroll-snap-align: start; scrollbar-width: thin; padding: 2px; }
+.project-carousel .project-art { height: min(27svh, 250px); aspect-ratio: auto; }
+.project-carousel .project-description { margin-top: 10px; }
+.project-carousel .project-meta { margin-top: 14px; }
+.project-carousel .tags { margin-top: 12px; }
+.project-carousel-controls { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding-top: 10px; font-size: 11px; color: var(--muted); }
+.project-carousel-controls > div { display: flex; gap: 8px; }
+.project-carousel-controls button { display: grid; place-items: center; width: 38px; height: 36px; background: var(--background); border: 1px solid var(--line); color: var(--foreground); border-radius: 5px; cursor: pointer; }
+.project-carousel-controls button:hover:not(:disabled) { background: var(--surface-soft); color: var(--accent); }
+.project-carousel-controls button:disabled { opacity: .35; cursor: default; }
+.carousel-previous { display: flex; transform: rotate(180deg); }
+.work-details-link { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; font-size: 11px; color: var(--accent); margin-top: 8px; padding: 5px 0; }
+.work-details-link:hover { text-decoration: underline; }
+.screen-work .art-disclosure { flex-shrink: 0; font-size: 9px; margin-top: 6px; }
+@media(max-height:740px) and (min-width:701px) {
+  .screen-flow .hero h1 { font-size: clamp(34px,4vw,54px); }
+  .screen-flow .hero-copy > p { margin-top: 16px; font-size: 14px; }
+  .screen-flow .hero-actions { margin-top: 18px; }
+  .screen-flow .programmer-scene { max-width: 520px; }
+}
+@media(max-width:700px) {
+  :root { --header-height: 90px; }
+  .screen-flow > .hero { padding-block: calc(var(--header-height) + 18px) 18px; gap: 0; grid-template-rows: auto minmax(0,1fr); }
+  .screen-flow .hero h1 { font-size: clamp(27px,7.2vw,42px); }
+  .screen-flow .hero-copy > p { margin-top: 14px; font-size: 12px; line-height: 1.65; }
+  .screen-flow .hero-actions { margin-top: 16px; }
+  .screen-flow .hero-location { margin-top: 14px; }
+  .screen-flow .programmer-scene { margin-top: 20px; align-self: center; }
+  .screen-flow .pixel-studio { height: min(27svh,240px); }
+  .screen-flow .pixel-workspace { height: 100%; }
+  .screen-flow .scene-caption { margin-top: 8px; }
+  .screen-flow > .work-section { padding-block: calc(var(--header-height) + 18px) 18px; }
+  .screen-work .section-heading { margin-bottom: 14px; }
+  .screen-work .section-heading > p { display: none; }
+  .project-carousel-track { gap: 16px; }
+  .project-carousel-track > .project { flex-basis: 100%; }
+  .project-carousel .project-art { height: min(23svh,210px); }
+  .project-carousel .project h3 { font-size: 22px; }
+  .project-carousel .project-description { font-size: 12px; line-height: 1.7; }
+  .screen-flow > .about-section, .screen-flow > .journey-section { padding-block: calc(var(--header-height) + 24px) 24px; }
+  .screen-flow > .journey-section { grid-template-rows: auto minmax(0,1fr); gap: 22px; }
+  .screen-flow .journey-list { align-self: start; }
+  .screen-flow > .contact-section { padding-block: calc(var(--header-height) + 24px) 115px; }
+  .screen-flow > section:last-child { padding-bottom: 115px; }
+  .screen-flow .contact-top :is(h1,h2) { font-size: clamp(32px,10vw,45px); }
+}
+@media(prefers-reduced-motion:reduce) { html:has(.screen-flow) { scroll-snap-type: y proximity; scroll-behavior: auto; } }

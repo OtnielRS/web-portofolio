@@ -7,6 +7,7 @@ import "./globals.css";
 import "./_components/site-header.css";
 import "./_features/home/programmer-scene.css";
 import "./theme.css";
+import "./screen-flow.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

@@ -139,10 +139,16 @@ Rectangular content uses modest rounded corners: tags, buttons, project imagery 
 ## Components
 
 - **Actions:** Primary actions use accent/on-accent, secondary actions use a line border and soft hover surface. Desktop buttons have a minimum height of (49px); mobile buttons use (47px). Background and color state changes take (.2s).
-- **Navigation:** Four dedicated route links remain visible in a sticky pill. Accent follows the visible homepage section or the current dedicated route; `aria-current` exposes the state. The compact theme switch is (44px), becoming (38px) below (700px) and (36px) below (400px).
+- **Navigation:** Four links remain visible in a fixed pill over full-screen sections. Accent follows the visible homepage section or the current dedicated route; `aria-current` exposes the state. The compact theme switch is (44px), becoming (38px) below (700px) and (36px) below (400px).
 - **Project cards:** Image-led, flat cards have no enclosing panel. Actual screenshots use containment at aspect ratio (1.86). Image hover scales to (1.025) over (.6s); a circular open affordance appears on hover/focus and remains visible on mobile. Technology tags wrap below descriptions. The social-app gallery uses native expandable details.
 - **Programmer scene:** A responsive SVG uses a (320 × 224) viewBox, `crispEdges`, accessible title/description, and local day/night material variables. Stepped animations cover typing (.45s), breathing (4s), clouds (12s), cursor (1.3s), steam (3s) and stars (4s). Pause is a pressed-state button; animation also pauses offscreen and when the document is hidden. Reduced motion disables animation and hides the pause button. Both theme switches expose a named switch with `aria-checked`.
 - **Keyboard access:** A skip link targets main content. Links and buttons receive accent focus outlines, generally (3px) with (6px) offset; navigation and the compact switch use their own (2px) outlines. Reduced motion also removes smooth scrolling and state transitions. Theme surface changes otherwise transition over (.25s).
+
+## Full-screen section flow
+
+Feature sections use (100svh), vertical mandatory snapping, and `scroll-snap-stop: always`. The transparent header is fixed over the current screen; content reserves (109px) above it on desktop and (90px) at widths up to (700px). The final screen reserves footer space. Reduced-motion users get proximity snapping and instant navigation.
+
+Projects use a horizontal snapping carousel: two cards per desktop viewport and one at (700px) or narrower. Previous/next buttons, a visible range counter, horizontal scrolling, and keyboard access expose all five projects. Screenshot height is capped at (27svh / 250px) on desktop and (23svh / 210px) on smaller screens. Narrow or short screens preserve text through internal scrolling rather than clipping it. The detailed Work page retains its expandable original-screen gallery.
 
 ## Do's and Don'ts
 

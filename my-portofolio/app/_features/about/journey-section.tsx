@@ -31,7 +31,7 @@ const journey = [
 
 export default function JourneySection() {
   return (
-    <section className="journey-section container" aria-labelledby="journey-title">
+    <section className="journey-section container" id="experience" aria-labelledby="journey-title">
       <div className="journey-intro">
         <h2 id="journey-title">The journey so far<span>.</span></h2>
         <p>A different starting point.<br />The same drive to figure things out.</p>
