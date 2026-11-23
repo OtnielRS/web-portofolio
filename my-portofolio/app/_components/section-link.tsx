@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ComponentProps, MouseEvent } from "react";
+import scrollToSection from "./scroll-to-section";
 
 export type SectionLinkProps = Omit<ComponentProps<typeof Link>, "href" | "onClick"> & {
   sectionId: string;
@@ -18,12 +19,8 @@ export default function SectionLink({ sectionId, pageHref, ...props }: SectionLi
     if (!section) return;
 
     event.preventDefault();
-    const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth";
-    if (sectionId === "home") {
-      window.scrollTo({ top: 0, left: 0, behavior });
-    } else {
-      section.scrollIntoView({ behavior, block: "start" });
-    }
+    const top = sectionId === "home" ? 0 : section.getBoundingClientRect().top + window.scrollY;
+    scrollToSection(top);
   }
 
   return <Link {...props} href={pathname === "/" ? `/#${sectionId}` : pageHref} onClick={handleClick} />;
