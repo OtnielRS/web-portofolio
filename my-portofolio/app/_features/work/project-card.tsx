@@ -1,5 +1,6 @@
 import Arrow from "@/app/_components/arrow";
 import ProjectArt from "./project-art";
+import ProjectGallery from "./project-gallery";
 import type { Project } from "./projects";
 
 export default function ProjectCard({ project }: { project: Project }) {
@@ -26,6 +27,7 @@ export default function ProjectCard({ project }: { project: Project }) {
       </h3>
       <p className="project-kind">{project.kind}</p>
       <p className="project-description">{project.text}</p>
+      {project.art === "social" && <ProjectGallery />}
       {project.stack.length > 0 && (
         <ul className="tags" aria-label={`${project.name} technologies`}>
           {project.stack.map(technology => <li key={technology}>{technology}</li>)}

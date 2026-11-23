@@ -1,6 +1,5 @@
 import { projects } from "./projects";
 import ProjectCard from "./project-card";
-import ProjectGallery from "./project-gallery";
 import ProjectCarousel from "./project-carousel";
 import Link from "next/link";
 import Arrow from "@/app/_components/arrow";
@@ -14,14 +13,16 @@ export default function WorkSection({ standalone = false, screen = false }: { st
         <p>Ideas brought down to Earth.</p>
         <div className="mini-system" aria-hidden="true"><i/><i/><i/><i/><i/></div>
       </div>
-      {screen ? <ProjectCarousel /> : <div className="project-grid">
-        {projects.map(project => <ProjectCard key={project.name} project={project} />)}
-      </div>}
-      {screen && !standalone ? <Link className="work-details-link" href="/work">View project details and app screens <Arrow diagonal /></Link> : <ProjectGallery />}
-      <p className="art-disclosure">
-        Bastionfall, Chess, Animal Quiz, and Alice Store show actual app screenshots. Tempat Gosip combines
-        four app screens in a styled mockup; originals are available on the Work page.
-      </p>
+      <div className={screen ? "work-screen-body" : undefined}>
+        {screen ? <ProjectCarousel /> : <div className="project-grid">
+          {projects.map(project => <ProjectCard key={project.name} project={project} />)}
+        </div>}
+        {screen && !standalone && <Link className="work-details-link" href="/work">View all projects <Arrow diagonal /></Link>}
+        <p className="art-disclosure">
+          Bastionfall, Chess, Animal Quiz, and Alice Store show actual app screenshots. Tempat Gosip combines
+          four app screens in a styled mockup; use its screenshot button to explore the originals.
+        </p>
+      </div>
     </section>
   );
 }

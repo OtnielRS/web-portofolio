@@ -12,4 +12,4 @@ User-supplied screenshots, copied without visual modification:
 - tempat-gosip-3.jpeg: Tempat Gossip 3.jpeg (profile)
 - tempat-gosip-4.jpeg: Tempat Gossip 4.jpeg (registration)
 
-tempat-gosip-showcase.png is an AI-styled four-phone presentation based on the four supplied Tempat Gosip screenshots. Its exact generation prompt is recorded in .impeccable/tempat-gosip-prompt.txt. The page also provides all four unmodified originals in an expandable gallery.
+tempat-gosip-showcase.png is an AI-styled four-phone presentation based on the four supplied Tempat Gosip screenshots. Its exact generation prompt is recorded in .impeccable/tempat-gosip-prompt.txt. The page also provides all four unmodified originals in a modal opened from its project card.
