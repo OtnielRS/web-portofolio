@@ -6,7 +6,7 @@ import { createPortal } from "react-dom";
 
 const screens = ["Sign in", "Home feed", "Profile", "Create account"];
 
-export default function ProjectGallery() {
+export default function ProjectGallery({ compact = false }: { compact?: boolean }) {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -27,8 +27,8 @@ export default function ProjectGallery() {
 
   return (
     <>
-      <button className="project-screens-button" type="button" aria-haspopup="dialog" onClick={() => { setActive(0); setOpen(true); }}>
-        View app screenshots <span aria-hidden="true">↗</span>
+      <button className="project-screens-button" type="button" aria-label="View Tempat Gosip screenshots" aria-haspopup="dialog" onClick={() => { setActive(0); setOpen(true); }}>
+        {compact ? "Screens" : "View app screenshots"} <span aria-hidden="true">↗</span>
       </button>
       {open && createPortal(
         <dialog ref={dialogRef} className="project-gallery-modal" aria-labelledby={titleId}

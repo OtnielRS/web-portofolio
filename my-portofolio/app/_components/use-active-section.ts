@@ -1,24 +1,27 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import visibleSection from "./visible-section";
 
 type SectionLink = { href: string; sectionId: string };
 
 export default function useActiveSection(pathname: string, sections: readonly SectionLink[]) {
   const [activeSection, setActiveSection] = useState({ pathname: "/", href: "/" });
+  const routeHref = sections.find(section => section.href !== "/" && pathname.startsWith(`${section.href.split("#")[0]}/`))?.href ?? pathname;
 
   useEffect(() => {
+    if (pathname !== "/" && pathname !== "/about") return;
     let frame = 0;
 
     function updateActiveSection() {
       frame = 0;
       const headerBottom = document.querySelector(".portfolio-header")?.getBoundingClientRect().bottom ?? 0;
       const readingLine = headerBottom + Math.min(120, window.innerHeight * .15);
-      const available = sections.filter(section => document.getElementById(section.sectionId));
-      let current = available[0]?.href ?? pathname;
+      const available = sections.filter(section => (pathname === "/" || section.href.split("#")[0] === pathname) && visibleSection(section.sectionId));
+      let current = available[0]?.href ?? routeHref;
 
       for (const section of available) {
-        const element = document.getElementById(section.sectionId);
+        const element = visibleSection(section.sectionId);
         if (element && element.getBoundingClientRect().top <= readingLine) {
           current = section.href;
         }
@@ -45,7 +48,8 @@ export default function useActiveSection(pathname: string, sections: readonly Se
       window.removeEventListener("scroll", scheduleUpdate);
       window.removeEventListener("resize", scheduleUpdate);
     };
-  }, [pathname, sections]);
+  }, [pathname, routeHref, sections]);
 
-  return activeSection.pathname === pathname ? activeSection.href : pathname;
+  if (pathname !== "/" && pathname !== "/about") return routeHref;
+  return activeSection.pathname === pathname ? activeSection.href : routeHref;
 }

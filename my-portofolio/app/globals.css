@@ -16,7 +16,7 @@
 .project-screenshot-social img{object-fit:contain}
 .art-disclosure{line-height:1.7;max-width:95ch}
 #main{flex:1;min-width:0;outline:none}
-.page-content .work-section{border-top:0;padding-top:56px}
+.page-content:not(.screen-flow) .work-section{border-top:0;padding-top:56px}
 .page-content .about-section{margin-top:32px}
 .section-heading h1{font-size:37px;font-weight:650;line-height:1.15;letter-spacing:-.035em}
 .section-heading h1>span,.about-layout h1>span{color:var(--accent)}
@@ -27,6 +27,6 @@
 .contact-page .contact-section{width:100%;display:flex;align-items:center}
 .site-footer>a svg{transform:none}
 @media(max-width:1100px){.about-layout h1{font-size:39px}.contact-top h1{font-size:52px}}
-@media(max-width:700px){.page-content .work-section{padding-top:32px}.page-content .about-section{margin-top:20px}.section-heading h1{font-size:29px}.about-layout h1{font-size:36px}.about-layout h1 br{display:none}.contact-top h1{font-size:45px}.contact-page{min-height:calc(100svh - 250px)}}
+@media(max-width:700px){.page-content:not(.screen-flow) .work-section{padding-top:32px}.page-content .about-section{margin-top:20px}.section-heading h1{font-size:29px}.about-layout h1{font-size:36px}.about-layout h1 br{display:none}.contact-top h1{font-size:45px}.contact-page{min-height:calc(100svh - 250px)}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
 @media(max-width:700px){.project-screenshot{aspect-ratio:1.86}}

@@ -41,6 +41,7 @@ const destinations = [
   { x: 430, y: 65, progress: 1, planet: "saturn", year: "2026", name: "Hacktiv8" },
 ];
 const milestones = [...journey].reverse();
+const roleLabels = ["International Relation", "Business development", "Procurement", "Full-stack training"];
 const flightPath = "M70 280C135 335 185 290 205 230S175 75 285 105S375 170 430 65";
 
 export default function JourneySection() {
@@ -74,6 +75,7 @@ export default function JourneySection() {
               <span className={`journey-planet journey-planet-${stop.planet}`} aria-hidden="true" />
               <span className="journey-stop-year">{stop.year}</span>
               <span className="journey-stop-name">{stop.name}</span>
+              <span className="journey-stop-role">{roleLabels[index]}</span>
             </button>
           ))}
           <p className="journey-map-caption">Choose a planet to explore a chapter.</p>
@@ -86,10 +88,10 @@ export default function JourneySection() {
             <p className="journey-description">{entry.description}</p>
           </div>
           <div className="journey-flight-controls">
-            <p>Chapter {active + 1} <span>of {milestones.length}</span></p>
+            <p>{destination.year} <span>selected</span></p>
             <div>
-              <button type="button" disabled={active === 0} onClick={() => setActive(index => index - 1)} aria-label="Previous career milestone"><span className="journey-previous"><Arrow /></span></button>
-              <button type="button" disabled={active === milestones.length - 1} onClick={() => setActive(index => index + 1)} aria-label="Next career milestone"><Arrow /></button>
+              <button type="button" disabled={active === 0} onClick={() => setActive(index => index - 1)} aria-label="Earlier career milestone"><span className="journey-previous"><Arrow /></span> Earlier</button>
+              <button type="button" disabled={active === milestones.length - 1} onClick={() => setActive(index => index + 1)} aria-label="Later career milestone">Later <Arrow /></button>
             </div>
           </div>
         </div>

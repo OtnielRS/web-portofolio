@@ -32,11 +32,11 @@
 .pixel-star-2 { animation-delay: -2.6s; }
 .programmer-scene[data-animate="false"] .pixel-workspace * { animation-play-state: paused; }
 .scene-caption { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 14px; }
-.scene-caption-text { font-size: 10px; line-height: 1.6; color: var(--muted); }
+.scene-caption-text { font-size: 11px; line-height: 1.6; color: var(--muted); }
 .scene-actions { display: flex; align-items: center; gap: 9px; flex-shrink: 0; }
-.scene-pause { color: var(--muted); background: transparent; border: 0; padding: 8px 3px; font-size: 9px; cursor: pointer; }
+.scene-pause { min-height: 44px; min-width: 44px; color: var(--muted); background: transparent; border: 0; padding: 8px; font-size: 11px; cursor: pointer; }
 .scene-pause:hover { color: var(--accent); }
-.scene-theme-toggle { display: inline-flex; gap: 7px; align-items: center; min-height: 36px; padding: 7px 10px; background: var(--surface-soft); border: 1px solid var(--line); color: var(--foreground); border-radius: 6px; font-size: 10px; cursor: pointer; }
+.scene-theme-toggle { display: inline-flex; gap: 7px; align-items: center; min-height: 44px; padding: 7px 10px; background: var(--surface-soft); border: 1px solid var(--line); color: var(--foreground); border-radius: 6px; font-size: 11px; cursor: pointer; }
 .scene-theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
 @keyframes pixel-clouds { to { transform: translateX(8px); } }
 @keyframes pixel-typing { 50% { transform: translateY(-1px); } }
@@ -45,5 +45,5 @@
 @keyframes pixel-steam { 0% { opacity: 0; transform: translateY(3px); } 40% { opacity: .7; } 100% { opacity: 0; transform: translateY(-4px); } }
 @keyframes pixel-twinkle { 50% { opacity: .25; } }
 @media(max-width:1100px) { .programmer-scene { margin-left: 20px; } .scene-caption { flex-wrap: wrap; gap: 4px; } }
-@media(max-width:700px) { .programmer-scene { margin: 32px 0 10px; } .scene-caption { flex-wrap: nowrap; } .scene-caption-text { font-size: 9px; } }
+@media(max-width:700px) { .programmer-scene { margin: 32px 0 10px; } .scene-caption { flex-wrap: wrap; gap: 8px; } .scene-caption-text { font-size: 11px; } }
 @media(prefers-reduced-motion:reduce) { .pixel-workspace * { animation: none !important; } .scene-pause { display: none; } }

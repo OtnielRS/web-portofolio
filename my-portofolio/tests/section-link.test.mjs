@@ -10,6 +10,9 @@ const compiled = ts.transpileModule(fs.readFileSync("app/_components/section-lin
 const scrollCompiled = ts.transpileModule(fs.readFileSync("app/_components/scroll-to-section.ts", "utf8"), {
   compilerOptions: { module: ts.ModuleKind.CommonJS },
 }).outputText;
+const visibleCompiled = ts.transpileModule(fs.readFileSync("app/_components/visible-section.ts", "utf8"), {
+  compilerOptions: { module: ts.ModuleKind.CommonJS },
+}).outputText;
 
 function render({ pathname = "/", reduced = false, sectionId = "work" } = {}) {
   const calls = [];
@@ -18,6 +21,15 @@ function render({ pathname = "/", reduced = false, sectionId = "work" } = {}) {
   let frame;
   const listeners = new Map();
   const style = { scrollSnapType: "", scrollBehavior: "" };
+  const attributes = new Map();
+  const headingListeners = new Map();
+  const heading = {
+    getAttribute: name => attributes.get(name) ?? null,
+    setAttribute: (name, value) => attributes.set(name, value),
+    removeAttribute: name => attributes.delete(name),
+    focus: options => calls.push({ kind: "focus", ...options }),
+    addEventListener: (name, callback) => headingListeners.set(name, callback),
+  };
   const window = {
     scrollY: 0,
     matchMedia: () => ({ matches: reduced }),
@@ -26,14 +38,21 @@ function render({ pathname = "/", reduced = false, sectionId = "work" } = {}) {
     cancelAnimationFrame: () => { frame = undefined; },
     addEventListener: (type, callback) => listeners.set(type, callback),
     removeEventListener: type => listeners.delete(type),
+    location: { hash: "" },
+    history: { state: { existing: true }, pushState: (state, title, hash) => { calls.push({ kind: "history", state, hash }); window.location.hash = hash; } },
   };
-  const document = { documentElement: { style }, getElementById: () => ({ getBoundingClientRect: () => ({ top: 900 }) }) };
+  const section = { id: sectionId, scrollTop: 400, getClientRects: () => [{}], getBoundingClientRect: () => ({ top: 900 }), querySelector: () => heading };
+  const hiddenSection = { id: sectionId, getClientRects: () => [] };
+  const document = { documentElement: { style }, querySelectorAll: () => [hiddenSection, section] };
+  const visibleExports = {};
+  vm.runInNewContext(visibleCompiled, { exports: visibleExports, document });
   vm.runInNewContext(scrollCompiled, { exports: scrollExports, window, document, performance: { now: () => 0 } });
   const dependencies = {
     "react/jsx-runtime": { jsx: (type, props) => ({ type, props }) },
     "next/link": { default: "Link" },
     "next/navigation": { usePathname: () => pathname },
     "./scroll-to-section": scrollExports,
+    "./visible-section": visibleExports,
   };
   vm.runInNewContext(compiled, {
     exports,
@@ -43,7 +62,7 @@ function render({ pathname = "/", reduced = false, sectionId = "work" } = {}) {
   });
   const link = exports.default({ sectionId, pageHref: sectionId === "home" ? "/#home" : sectionId === "experience" ? "/about#experience" : `/${sectionId}`, children: "Navigate" });
   const event = { button: 0, metaKey: false, ctrlKey: false, shiftKey: false, altKey: false, preventDefault: () => calls.push({ kind: "prevent" }) };
-  return { link, event, calls, style, listeners, advance: time => frame?.(time) };
+  return { link, event, calls, style, listeners, attributes, headingListeners, section, advance: time => frame?.(time) };
 }
 
 test("homepage navigation animates to its section instead of loading another page", () => {
@@ -55,7 +74,7 @@ test("homepage navigation animates to its section instead of loading another pag
   advance(525);
   assert.equal(calls.at(-1).top, 450);
   advance(1050);
-  assert.equal(calls.at(-1).top, 900);
+  assert.equal(calls.filter(call => call.kind === "scroll").at(-1).top, 900);
   assert.equal(style.scrollSnapType, "");
 });
 
@@ -101,10 +120,39 @@ test("Experience links scroll locally on Home and About and retain their dedicat
     assert.equal(link.props.href, pathname === "/" ? "/#experience" : "/about#experience");
     link.props.onClick(event);
     advance(1050);
-    assert.equal(calls.at(-1).top, 900);
+    assert.equal(calls.filter(call => call.kind === "scroll").at(-1).top, 900);
   }
   const work = render({ pathname: "/work", sectionId: "experience" });
   assert.equal(work.link.props.href, "/about#experience");
   work.link.props.onClick(work.event);
   assert.equal(work.calls.length, 0);
+});
+
+test("completed navigation updates the fragment and focuses its heading without another scroll", () => {
+  const { link, event, calls, advance, attributes, headingListeners, section } = render();
+  link.props.onClick(event);
+  advance(525);
+  assert.equal(calls.some(call => call.kind === "focus" || call.kind === "history"), false);
+  advance(1050);
+  assert.equal(calls.find(call => call.kind === "history").hash, "#work");
+  assert.equal(calls.at(-1).kind, "focus");
+  assert.equal(calls.at(-1).preventScroll, true);
+  assert.equal(attributes.get("tabindex"), "-1");
+  assert.equal(section.scrollTop, 0);
+  headingListeners.get("blur")();
+  assert.equal(attributes.has("tabindex"), false);
+});
+
+test("cancelled navigation does not steal focus or create history; reduced motion completes immediately", () => {
+  const cancelled = render();
+  cancelled.link.props.onClick(cancelled.event);
+  cancelled.advance(200);
+  cancelled.listeners.get("keydown")();
+  cancelled.advance(1050);
+  assert.equal(cancelled.calls.some(call => call.kind === "focus" || call.kind === "history"), false);
+  assert.equal(cancelled.section.scrollTop, 400);
+  const instant = render({ reduced: true });
+  instant.link.props.onClick(instant.event);
+  assert.equal(instant.calls.find(call => call.kind === "history").hash, "#work");
+  assert.equal(instant.calls.at(-1).kind, "focus");
 });

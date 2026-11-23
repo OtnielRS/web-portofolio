@@ -1,10 +1,11 @@
 let cancelScroll: (() => void) | undefined;
 
 /** A deliberate section-to-section flight, interruptible by the visitor. */
-export default function scrollToSection(top: number) {
+export default function scrollToSection(top: number, onComplete?: () => void) {
   cancelScroll?.();
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     window.scrollTo({ top, left: 0, behavior: "instant" });
+    onComplete?.();
     return;
   }
 
@@ -34,7 +35,10 @@ export default function scrollToSection(top: number) {
     const eased = progress * progress * (3 - 2 * progress);
     window.scrollTo({ top: from + distance * eased, left: 0, behavior: "instant" });
     if (progress < 1) frame = window.requestAnimationFrame(tick);
-    else finish();
+    else {
+      finish();
+      onComplete?.();
+    }
   }
 
   cancelScroll = finish;

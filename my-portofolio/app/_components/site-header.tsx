@@ -4,10 +4,11 @@ import { usePathname } from "next/navigation";
 import useActiveSection from "./use-active-section";
 import ThemeToggle from "./theme-toggle";
 import SectionLink from "./section-link";
+import { useLayoutEffect, useRef } from "react";
 
 const navigation = [
   { href: "/", label: "Home", sectionId: "home" },
-  { href: "/work", label: "Work", sectionId: "work" },
+  { href: "/work", label: "Projects", sectionId: "work" },
   { href: "/about", label: "About", sectionId: "about" },
   { href: "/skills", label: "Skills", sectionId: "skills" },
   { href: "/about#experience", label: "Experience", sectionId: "experience" },
@@ -17,9 +18,20 @@ const navigation = [
 export default function SiteHeader() {
   const pathname = usePathname();
   const activeHref = useActiveSection(pathname, navigation);
+  const headerRef = useRef<HTMLElement>(null);
+
+  useLayoutEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+    const updateHeight = () => document.documentElement.style.setProperty("--header-height", `${Math.ceil(header.getBoundingClientRect().height)}px`);
+    updateHeight();
+    const observer = new ResizeObserver(updateHeight);
+    observer.observe(header);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <header className="portfolio-header">
+    <header className="portfolio-header" ref={headerRef}>
       <nav className="portfolio-navigation" aria-label="Main navigation">
         <svg className="navigation-orbit" viewBox="0 0 1000 60" preserveAspectRatio="none" aria-hidden="true">
           <ellipse cx="490" cy="30" rx="470" ry="23" />

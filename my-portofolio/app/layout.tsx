@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import SiteHeader from "./_components/site-header";
 import SiteFooter from "./_components/site-footer";
+import SiteMain from "./_components/site-main";
 import { themeBootstrap } from "./_components/theme-config";
 import "./globals.css";
 import "./_components/site-header.css";
@@ -12,6 +13,7 @@ import "./_features/about/orbital-study.css";
 import "./_features/work/project-gallery.css";
 import "./_features/about/journey-section.css";
 import "./_features/skills/skills-section.css";
+import "./_features/work/work-details.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,7 +43,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         <a className="skip-link" href="#main">Skip to content</a>
         <SiteHeader />
-        <main id="main" tabIndex={-1}>{children}</main>
+        <SiteMain>{children}</SiteMain>
         <SiteFooter />
       </body>
     </html>

@@ -1,52 +1,42 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import Arrow from "@/app/_components/arrow";
 import ProjectCard from "./project-card";
 import { projects } from "./projects";
 
-export default function ProjectCarousel() {
-  const track = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState({ index: 0, visible: 2, hasNext: true });
+function subscribeToViewport(notify: () => void) {
+  const query = window.matchMedia("(max-width: 700px)");
+  query.addEventListener("change", notify);
+  return () => query.removeEventListener("change", notify);
+}
+function isNarrow() { return window.matchMedia("(max-width: 700px)").matches; }
+function serverIsNarrow() { return false; }
 
-  function move(direction: number) {
-    const element = track.current;
-    if (!element) return;
-    const cards = Array.from(element.children) as HTMLElement[];
-    const next = Math.max(0, Math.min(cards.length - 1, position.index + direction));
-    element.scrollTo({ left: cards[next].offsetLeft - cards[0].offsetLeft, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
-  }
-
-  const updateIndex = useCallback(() => {
-    const element = track.current;
-    const first = element?.firstElementChild as HTMLElement | null;
-    const second = element?.children[1] as HTMLElement | undefined;
-    if (!element || !first) return;
-    const step = second ? second.offsetLeft - first.offsetLeft : first.offsetWidth;
-    const visible = Math.max(1, Math.round(element.clientWidth / Math.max(1, step)));
-    const index = Math.max(0, Math.min(projects.length - visible, Math.round(element.scrollLeft / Math.max(1, step))));
-    const hasNext = element.scrollLeft + element.clientWidth < element.scrollWidth - 2;
-    setPosition(previous => previous.index === index && previous.visible === visible && previous.hasNext === hasNext ? previous : { index, visible, hasNext });
-  }, []);
-
-  useEffect(() => {
-    const element = track.current;
-    if (!element) return;
-    const observer = new ResizeObserver(updateIndex);
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, [updateIndex]);
+export default function ProjectCarousel({ showIndex = false }: { showIndex?: boolean }) {
+  const narrow = useSyncExternalStore(subscribeToViewport, isNarrow, serverIsNarrow);
+  const [selected, setSelected] = useState(0);
+  const pageSize = narrow ? 1 : 2;
+  const first = Math.floor(selected / pageSize) * pageSize;
+  const end = Math.min(first + pageSize, projects.length);
+  const range = `Projects ${first + 1}${end > first + 1 ? `–${end}` : ""} / ${projects.length}`;
 
   return (
     <div className="project-carousel" role="region" aria-roledescription="carousel" aria-label="Selected projects">
-      <div className="project-carousel-track" ref={track} onScroll={updateIndex} tabIndex={0} aria-label="Project cards; scroll horizontally to browse">
-        {projects.map(project => <ProjectCard key={project.name} project={project} />)}
+      <div className="project-pages" id="project-pages" key={first}>
+        {projects.slice(first, end).map(project => <ProjectCard key={project.name} project={project} compact />)}
       </div>
       <div className="project-carousel-controls">
-        <span aria-live="polite">Projects {position.index + 1}{position.visible > 1 ? `–${Math.min(projects.length, position.index + position.visible)}` : ""} / {projects.length}</span>
+        {showIndex ? <label className="project-chooser">
+          <span className="sr-only">Choose a project</span>
+          <select value={selected} onChange={event => setSelected(Number(event.target.value))} aria-controls="project-pages">
+            {projects.map((project, index) => <option key={project.art} value={index}>{project.name}</option>)}
+          </select>
+          <span className="sr-only" aria-live="polite">{range}</span>
+        </label> : <span aria-live="polite">{range}</span>}
         <div>
-          <button type="button" onClick={() => move(-1)} disabled={position.index === 0} aria-label="Previous project"><span className="carousel-previous"><Arrow /></span></button>
-          <button type="button" onClick={() => move(1)} disabled={!position.hasNext} aria-label="Next project"><Arrow /></button>
+          <button type="button" onClick={() => setSelected(Math.max(0, first - pageSize))} disabled={first === 0} aria-controls="project-pages" aria-label="Previous projects"><span className="carousel-previous"><Arrow /></span></button>
+          <button type="button" onClick={() => setSelected(end)} disabled={end === projects.length} aria-controls="project-pages" aria-label="Next projects"><Arrow /></button>
         </div>
       </div>
     </div>

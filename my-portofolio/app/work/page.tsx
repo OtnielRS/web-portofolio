@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import WorkSection from "../_features/work/work-section";
 
 export const metadata: Metadata = {
-  title: "Work · Otniel Rahadiyan Sumantri",
+  title: "Projects · Otniel Rahadiyan Sumantri",
   description: "Explore Otniel’s web, mobile, real-time multiplayer, and AI-powered projects.",
 };
 
