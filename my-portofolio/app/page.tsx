@@ -3,6 +3,7 @@ import WorkSection from "./_features/work/work-section";
 import AboutSection from "./_features/about/about-section";
 import JourneySection from "./_features/about/journey-section";
 import ContactSection from "./_features/contact/contact-section";
+import SkillsSection from "./_features/skills/skills-section";
 
 export default function HomePage() {
   return (
@@ -10,6 +11,7 @@ export default function HomePage() {
       <HeroSection />
       <WorkSection screen />
       <AboutSection />
+      <SkillsSection />
       <JourneySection />
       <ContactSection />
     </div>

@@ -23,20 +23,6 @@ export default function AboutSection({ standalone = false }: { standalone?: bool
             the people using a system at the center of the solution.
           </p>
           <p>Outside of code, I’m drawn to astronomy and our solar system. There’s always something more to explore.</p>
-          <div className="skills">
-            <div>
-              <h3>Interfaces</h3>
-              <p>React · Next.js · TypeScript<br />React Native · Expo · Tailwind CSS</p>
-            </div>
-            <div>
-              <h3>Behind the scenes</h3>
-              <p>Node.js · Express · GraphQL · Socket.io<br />PostgreSQL · MongoDB · REST APIs</p>
-            </div>
-            <div>
-              <h3>Quality & tools</h3>
-              <p>Jest · Supertest · Vitest · Zod<br />Git · Postman · Vercel</p>
-            </div>
-          </div>
         </div>
       </div>
     </section>

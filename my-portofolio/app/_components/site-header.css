@@ -60,6 +60,9 @@
 html { scroll-padding-top: 128px; }
 .skip-link { z-index: 30; }
 
+@media (min-width: 701px) and (max-width: 1100px) {
+  .portfolio-navigation-link { font-size: 14px; padding-inline: 10px; gap: 8px; }
+}
 @media (max-width: 700px) {
   html { scroll-padding-top: 110px; }
   .portfolio-header { padding: 16px 20px 20px; }
@@ -83,9 +86,10 @@ html { scroll-padding-top: 128px; }
 .navigation-planet-home { width: 15px; height: 15px; background: radial-gradient(ellipse at 30% 25%, #8bb078 0 20%, transparent 22%), radial-gradient(ellipse at 65% 65%, #74a16e 0 23%, transparent 25%), #367caa; }
 .navigation-planet-work { width: 13px; height: 13px; background: radial-gradient(ellipse at 35% 60%, #a54f35 0 18%, transparent 22%), #cd7950; }
 .navigation-planet-about { width: 18px; height: 18px; background: linear-gradient(175deg, #c8a87b 0 18%, #f0dbb8 18% 30%, #b57d53 30% 43%, #dfbe95 43% 60%, #ab704c 60% 72%, #e6cba7 72% 85%, #ba9268 85%); }
-.navigation-planet-experience { background: #c4a368; width: 15px; height: 15px; margin-inline: 4px; }
-.navigation-planet-contact { background: #8ccbd3; width: 14px; height: 14px; }
-.navigation-planet-experience::after { content: ""; position: absolute; inset: 4px -6px; border: 2px solid #b38c50; border-radius: 50%; transform: rotate(-30deg); }
+.navigation-planet-skills { background: #c4a368; width: 15px; height: 15px; margin-inline: 4px; }
+.navigation-planet-experience { background: #8ccbd3; width: 14px; height: 14px; }
+.navigation-planet-contact { background: #4168bf; width: 14px; height: 14px; }
+.navigation-planet-skills::after { content: ""; position: absolute; inset: 4px -6px; border: 2px solid #b38c50; border-radius: 50%; transform: rotate(-30deg); }
 .portfolio-navigation-link[aria-current] .navigation-planet { outline: 1px solid var(--accent); outline-offset: 4px; }
 .portfolio-navigation-link:hover .navigation-planet { transform: rotate(-15deg) scale(1.12); }
 .portfolio-navigation .theme-toggle { position: relative; width: 48px; height: 48px; margin-left: 8px; border-color: #b97330; background: #f6e5bb; color: #a64b15; transition: background-color .45s, color .45s, border-color .45s; }
@@ -104,13 +108,13 @@ html { scroll-padding-top: 128px; }
 @keyframes sun-ignite { from { transform: scale(.5); opacity: .65; } to { transform: scale(1.7); opacity: 0; } }
 @keyframes sun-dim { from { transform: scale(1.15); opacity: .35; } to { transform: scale(.4); opacity: 0; } }
 @media (max-width: 700px) {
-  .portfolio-navigation { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)) 44px; min-height: 70px; padding-inline: 6px; }
+  .portfolio-navigation { display: flex; justify-content: space-between; min-height: 70px; padding-inline: 6px; }
   .portfolio-navigation .portfolio-navigation-link { flex-direction: column; gap: 4px; min-width: 0; padding: 5px 2px 15px; font-size: 11px; letter-spacing: 0; }
   .navigation-planet { width: 11px; height: 11px; }
   .navigation-planet-work { width: 10px; height: 10px; }
   .navigation-planet-about { width: 14px; height: 14px; }
-  .navigation-planet-experience { margin-inline: 3px; }
-  .navigation-planet-experience::after { inset: 3px -5px; border-width: 1px; }
+  .navigation-planet-skills { margin-inline: 3px; }
+  .navigation-planet-skills::after { inset: 3px -5px; border-width: 1px; }
   .portfolio-navigation .theme-toggle { width: 44px; height: 44px; margin-left: 4px; }
   .solar-toggle-sun, .solar-toggle-moon { width: 26px; height: 26px; }
 }
