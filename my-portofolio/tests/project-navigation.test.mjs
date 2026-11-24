@@ -68,6 +68,7 @@ test("both engineering routes keep Work current in the header", () => {
   const links = [{ href: "/", sectionId: "home" }, { href: "/work", sectionId: "work" }, { href: "/about", sectionId: "about" }];
   for (const path of ["/work/bastionfall", "/work/hacktiv-chess"]) assert.equal(renderActiveSection(path, links), "/work");
   assert.equal(renderActiveSection("/skills", links), "/skills");
+  assert.equal(renderActiveSection("/work/all", links), "/work");
 });
 
 test("every project card has a details link backed by an existing route", () => {
@@ -89,4 +90,43 @@ test("every project card has a details link backed by an existing route", () => 
     assert.ok(fs.existsSync(`app${href}/page.tsx`), `Missing route for ${project.name}`);
   }
   assert.equal(notes.engineeringNotes.find(note => note.art === "animal").overviewOnly, true);
+});
+
+test("View all projects opens the full collection from either compact preview", () => {
+  const data = load("app/_features/work/projects.ts");
+  const jsx = (type, props) => ({ type, props });
+  const section = load("app/_features/work/work-section.tsx", {
+    "react/jsx-runtime": { jsx, jsxs: jsx },
+    "./projects": data,
+    "./project-card": { default: "ProjectCard" },
+    "./project-carousel": { default: "ProjectCarousel" },
+    "next/link": { default: "Link" },
+    "@/app/_components/arrow": { default: "Arrow" },
+  }).default;
+  for (const standalone of [false, true]) {
+    const preview = section({ standalone, screen: true });
+    assert.equal(nodes(preview, node => node.type === "Link")[0].props.href, "/work/all");
+    assert.equal(nodes(preview, node => node.type === "ProjectCarousel").length, 1);
+  }
+  const collection = section({ standalone: true, title: "All projects" });
+  assert.deepEqual(nodes(collection, node => node.type === "ProjectCard").map(card => card.props.project.name), Array.from(data.projects, project => project.name));
+  assert.equal(nodes(collection, node => node.type === "ProjectCarousel").length, 0);
+  assert.equal(nodes(collection, node => node.type === "h1")[0].props.children[0], "All projects");
+});
+test("the collection route uses document flow with its own canonical metadata", () => {
+  const data = load("app/_features/work/projects.ts");
+  const jsx = (type, props) => ({ type, props });
+  const page = load("app/work/all/page.tsx", {
+    "react/jsx-runtime": { jsx, jsxs: jsx },
+    "next/link": { default: "Link" },
+    "@/app/_components/arrow": { default: "Arrow" },
+    "@/app/_lib/metadata": { pageMetadata: (title, description, canonical) => ({ title, description, canonical }) },
+    "@/app/_features/work/projects": data,
+    "@/app/_features/work/work-section": { default: "WorkSection" },
+  });
+  const tree = page.default();
+  assert.equal(tree.props.className.includes("screen-flow"), false);
+  assert.equal(page.metadata.canonical, "/work/all");
+  assert.equal(nodes(tree, node => node.type === "Link")[0].props.href, "/#work", "Selected projects must return to the scrollable homepage, not the one-screen preview route");
+  assert.equal(nodes(tree, node => node.type === "WorkSection")[0].props.screen, undefined);
 });

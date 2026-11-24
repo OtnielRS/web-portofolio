@@ -51,3 +51,11 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+Full-screen wheel and swipe navigation is handled by `app/_components/screen-scroll.ts` and `use-screen-scroll.ts`. Each gesture selects one adjacent section; momentum is suppressed until that gesture ends. Long content keeps normal inner scrolling, while reduced-motion navigation is instant. Run `node --test tests/screen-scroll.test.mjs tests/section-link.test.mjs` to check screen boundaries, gesture handling, and interruption.
+
+`/work/all` is the full project collection, reached through View all projects on the homepage or `/work`. It shows all five projects in a responsive grid with standard document scrolling. Project detail pages return here through All projects. The homepage and `/work` keep their compact, single-screen pager.
+
+Inner content uses overscroll containment and requires a fresh gesture after reaching its edge, preventing Skills from being skipped. Experience scales its diagram to the viewport and hides its inner scrollbar; short/mobile layouts can still scroll to reach every milestone and control.
+
+The collection page's Selected projects link returns to `/#work` on the homepage, so visitors can continue scrolling through About, Skills, Experience, and Contact.

@@ -3,6 +3,7 @@
 import { useLayoutEffect, useRef, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
 import useContentMotion from "./use-content-motion";
+import useScreenScroll from "./use-screen-scroll";
 
 const screenRoutes = new Set(["/", "/work", "/about", "/skills", "/contact"]);
 
@@ -10,6 +11,7 @@ export default function SiteMain({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const mainRef = useRef<HTMLElement>(null);
   useContentMotion(mainRef, pathname);
+  useScreenScroll(mainRef, pathname);
 
   useLayoutEffect(() => {
     // A route change must not inherit horizontal or vertical scroll from another page.
