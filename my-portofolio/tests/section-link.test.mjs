@@ -156,3 +156,13 @@ test("cancelled navigation does not steal focus or create history; reduced motio
   assert.equal(instant.calls.find(call => call.kind === "history").hash, "#work");
   assert.equal(instant.calls.at(-1).kind, "focus");
 });
+
+test("consumed wheel momentum does not interrupt a screen transition midway", () => {
+  const state = render();
+  state.link.props.onClick(state.event);
+  state.advance(200);
+  state.listeners.get("wheel")({ defaultPrevented: true });
+  state.advance(1050);
+  assert.equal(state.calls.filter(call => call.kind === "scroll").at(-1).top, 900);
+  assert.equal(state.calls.some(call => call.kind === "focus"), true);
+});

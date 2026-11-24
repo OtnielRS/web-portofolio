@@ -1,4 +1,6 @@
 .screen-flow > .space-journey, .space-journey { display: flex; flex-direction: column; justify-content: safe center; align-items: stretch; gap: clamp(20px, 4svh, 48px); }
+.screen-flow > .space-journey { scrollbar-width: none; }
+.screen-flow > .space-journey::-webkit-scrollbar { display: none; }
 .space-journey .journey-intro { display: flex; align-items: end; justify-content: space-between; gap: 24px; }
 .space-journey .journey-intro h2 { font-size: clamp(30px, 3.4vw, 48px); max-width: 15ch; }
 .space-journey .journey-intro > p { max-width: 30ch; margin: 0; font-size: 13px; }
@@ -43,6 +45,13 @@
 @media (min-width: 701px) and (max-width: 1100px) {
   .journey-map { margin-bottom: 88px; }
   .journey-map-caption { bottom: -76px; }
+}
+@media (min-width: 701px) {
+  /* Leave room for the heading, navigation, planet labels and footer. */
+  .screen-flow .space-journey .journey-map { max-width: min(680px, max(300px, calc((100svh - var(--header-height) - 300px) * 1.4444))); }
+  .screen-flow .space-journey .journey-reading { padding-block: clamp(14px, 2.5svh, 28px); }
+  .screen-flow .space-journey .journey-milestone { min-height: min(220px, 28svh); }
+  .screen-flow .space-journey .journey-flight-controls { margin-top: clamp(12px, 2svh, 24px); }
 }
 @media (max-width: 700px) {
   .screen-flow > .space-journey { display: flex; justify-content: flex-start; gap: 12px; }
