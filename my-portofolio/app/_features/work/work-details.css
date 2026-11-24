@@ -3,6 +3,10 @@
 .project-actions a:hover, .project-case-back:hover { text-decoration: underline; text-underline-offset: 4px; }
 .project-actions a:focus-visible, .project-case-back:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .project-case { padding-block: 32px 64px; }
+.project-collection-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 16px; }
+.project-collection-top > p { color: var(--muted); font-size: 12px; }
+.page-content.project-collection .work-section { padding-top: 24px; }
+.project-collection .project-grid { align-items: start; }
 .project-case-intro { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: center; margin-top: 28px; }
 .project-case h1 { font-size: clamp(32px, 4vw, 54px); line-height: 1.15; letter-spacing: -.035em; font-weight: 650; }
 .project-case h1 > span { color: var(--accent); }
@@ -21,6 +25,7 @@
 .project-case-sections li + li { margin-top: 8px; }
 :is(h1,h2)[tabindex="-1"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
 @media (max-width: 700px) {
+  .project-collection-top { flex-wrap: wrap; gap: 4px 16px; }
   .project-case-intro, .project-case-sections { grid-template-columns: 1fr; gap: 28px; }
   .project-case-focus { font-size: 16px; }
 }

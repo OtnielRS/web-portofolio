@@ -11,7 +11,7 @@ export default function ProjectDetails({ art }: { art: "bastion" | "chess" | "st
   return (
     <div className="page-content project-page">
       <section className="project-case container" aria-labelledby="project-case-title">
-        <Link className="project-case-back" href="/work"><span className="carousel-previous"><Arrow /></span> All projects</Link>
+        <Link className="project-case-back" href="/work/all"><span className="carousel-previous"><Arrow /></span> All projects</Link>
         <div className="project-case-intro" data-content-motion>
           <div>
             <h1 id="project-case-title">{project.name}<span>.</span></h1>
