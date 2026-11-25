@@ -90,9 +90,11 @@ body:has(#main[data-route="/"]) > .site-footer, body:has(#main[data-route="/cont
   .screen-flow .contact-top :is(h1,h2) { font-size: clamp(32px,10vw,45px); }
 }
 @media(max-height:600px) {
-  .screen-flow > .screen-work { padding-top: calc(var(--header-height) + 8px); padding-bottom: 16px; }
+  .screen-flow > .screen-work { padding-top: calc(var(--header-height) + 8px); padding-bottom: 16px; overflow-y: auto; }
+  .screen-work .work-screen-body { flex: 1 0 auto; }
+  .project-compact .project-image-link { flex: 0 0 160px; }
   .screen-work .section-heading { margin-bottom: 10px; }
-  .screen-work .section-heading > p, .project-compact .project-image-link, .project-compact .project-kind { display: none; }
+  .screen-work .section-heading > p, .project-compact .project-kind { display: none; }
   .project-compact { justify-content: space-between; }
   .project-compact .project-description { -webkit-line-clamp: 2; }
   .screen-flow > .screen-work:only-child { padding-bottom: 16px; }

@@ -9,9 +9,9 @@ export default function HomePage() {
   return (
     <div className="screen-flow">
       <HeroSection />
-      <WorkSection screen />
       <AboutSection />
       <SkillsSection />
+      <WorkSection screen />
       <JourneySection />
       <ContactSection />
     </div>

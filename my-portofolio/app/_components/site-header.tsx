@@ -7,12 +7,12 @@ import SectionLink from "./section-link";
 import { useLayoutEffect, useRef } from "react";
 
 const navigation = [
-  { href: "/", label: "Home", sectionId: "home" },
-  { href: "/work", label: "Projects", sectionId: "work" },
-  { href: "/about", label: "About", sectionId: "about" },
-  { href: "/skills", label: "Skills", sectionId: "skills" },
-  { href: "/about#experience", label: "Experience", sectionId: "experience" },
-  { href: "/contact", label: "Contact", sectionId: "contact" },
+  { href: "/", label: "Home", sectionId: "home", planet: "earth" },
+  { href: "/about", label: "About", sectionId: "about", planet: "mars" },
+  { href: "/skills", label: "Skills", sectionId: "skills", planet: "jupiter" },
+  { href: "/work", label: "Projects", sectionId: "work", planet: "saturn" },
+  { href: "/about#experience", label: "Experience", sectionId: "experience", planet: "uranus" },
+  { href: "/contact", label: "Contact", sectionId: "contact", planet: "neptune" },
 ];
 
 export default function SiteHeader() {
@@ -37,7 +37,7 @@ export default function SiteHeader() {
           <ellipse cx="490" cy="30" rx="470" ry="23" />
           <path d="M30 30H930" />
         </svg>
-        {navigation.map(({ href, label, sectionId }, index) => (
+        {navigation.map(({ href, label, sectionId, planet }, index) => (
           <SectionLink
             key={href}
             pageHref={href === "/" ? "/#home" : href}
@@ -46,7 +46,7 @@ export default function SiteHeader() {
             style={{ animationDelay: `${index * 60}ms` }}
             aria-current={activeHref === href ? ((pathname === "/" && href !== "/") || href.includes("#") ? "location" : "page") : undefined}
           >
-            <span className={`navigation-planet navigation-planet-${sectionId}`} aria-hidden="true" />
+            <span className={`navigation-planet navigation-planet-${planet}`} aria-hidden="true" />
             <span className="navigation-label">{label}
               <svg className="navigation-shuttle" width="23" height="15" viewBox="0 0 32 20" fill="none" aria-hidden="true">
                 <path className="shuttle-exhaust" d="M12 14 16 19 20 14" stroke="currentColor" strokeWidth="1.5" />
