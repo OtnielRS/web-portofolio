@@ -11,7 +11,7 @@ export default function AboutSection({ standalone = false }: { standalone?: bool
           <OrbitalStudy />
         </div>
         <div className="about-content">
-          <p className="about-lead">I like understanding how IT systems work—and building software that makes everyday tasks easier.</p>
+          <p className="about-lead">I’m curious about how things work, and I enjoy building software that makes everyday life a little easier.</p>
           <p>
             I’m a Jakarta-based Junior Full Stack Developer building web and mobile applications with
             JavaScript and TypeScript. I work with React, Next.js, React Native, and Node.js, with a
