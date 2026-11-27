@@ -11,16 +11,17 @@ export default function AboutSection({ standalone = false }: { standalone?: bool
           <OrbitalStudy />
         </div>
         <div className="about-content">
-          <p className="about-lead">I like understanding how things work.<br />Then building something that works better.</p>
+          <p className="about-lead">I like understanding how IT systems work—and building software that makes everyday tasks easier.</p>
           <p>
-            I’m a Jakarta-based junior full-stack developer and a graduate of Hacktiv8’s full-stack
-            JavaScript program. I work across web and mobile, with a particular interest in backend
-            systems, real-time interactions, and thoughtful AI integrations.
+            I’m a Jakarta-based Junior Full Stack Developer building web and mobile applications with
+            JavaScript and TypeScript. I work with React, Next.js, React Native, and Node.js, with a
+            particular interest in backend development, AI integration, and automation to solve practical problems.
           </p>
           <p>
-            Before writing software, I worked in procurement and supported over 400 seller accounts
-            at Shopee. That experience taught me to listen carefully, investigate problems, and keep
-            the people using a system at the center of the solution.
+            My approach to development is shaped by my previous experience in procurement and supporting
+            more than 400 seller accounts at Shopee. Those roles taught me to investigate operational
+            issues, analyze information, and understand what people need from a system. I now bring
+            that same problem-solving mindset to building software.
           </p>
           <p>Outside of code, I’m drawn to astronomy and our solar system. There’s always something more to explore.</p>
         </div>

@@ -15,14 +15,14 @@ const journey = [
     date: "APR — AUG 2024",
     title: "Procurement Staff",
     organization: "Panca Nekasa",
-    description: "Material planning, supplier analysis, and procurement tracking.",
+    description: "Supported material planning through supplier analysis and procurement tracking. Organized purchasing information to help identify supply issues and support day-to-day operational decisions.",
     type: "Experience",
   },
   {
     date: "MAY — AUG 2022",
     title: "Business Development · Long Tail Analyst",
     organization: "Shopee Indonesia",
-    description: "Technical and operational support for 400+ seller accounts.",
+    description: "Provided technical and operational support for more than 400 seller accounts, investigating issues and guiding sellers toward practical solutions. Helped sellers navigate platform workflows through clear communication and structured problem-solving.",
     type: "Experience",
   },
   {
