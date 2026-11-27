@@ -12,7 +12,7 @@ export default function HeroSection() {
           A junior full-stack developer building thoughtful web and mobile experiences, from the interface to the API.
         </p>
         <div className="hero-actions">
-          <SectionLink className="button button-primary" sectionId="work" pageHref="/work">Explore my projects <Arrow /></SectionLink>
+          <SectionLink className="button button-primary" sectionId="projects" pageHref="/work">Explore my projects <Arrow /></SectionLink>
           <a className="button button-secondary" href="/otniel-resume.pdf" target="_blank" rel="noopener noreferrer">
             View résumé <Arrow diagonal />
           </a>

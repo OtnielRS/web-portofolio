@@ -12,16 +12,16 @@ function load(file, globals = {}, dependencies = {}) {
 }
 
 const navigation = [
-  { href: "/", sectionId: "home" }, { href: "/work", sectionId: "work" },
-  { href: "/about", sectionId: "about" }, { href: "/skills", sectionId: "skills" },
+  { href: "/", sectionId: "home" }, { href: "/about", sectionId: "about" },
+  { href: "/skills", sectionId: "skills" }, { href: "/work", sectionId: "projects" },
   { href: "/about#experience", sectionId: "experience" }, { href: "/contact", sectionId: "contact" },
 ];
 
 test("hidden cached sections cannot replace a visible section with the same ID", () => {
-  const hidden = { id: "work", getClientRects: () => [] };
-  const visible = { id: "work", getClientRects: () => [{}] };
+  const hidden = { id: "projects", getClientRects: () => [] };
+  const visible = { id: "projects", getClientRects: () => [{}] };
   const findSection = load("app/_components/visible-section.ts", { document: { querySelectorAll: () => [hidden, visible] } });
-  assert.equal(findSection("work"), visible);
+  assert.equal(findSection("projects"), visible);
   assert.equal(findSection("contact"), undefined);
 });
 
@@ -39,7 +39,7 @@ test("Work stays active even when cached Contact markup remains in the document"
 test("homepage scroll tracking ignores hidden Contact and selects the visible Work section", () => {
   const elements = [
     { id: "contact", getClientRects: () => [], getBoundingClientRect: () => ({ top: 0 }) },
-    ...navigation.map((section, index) => ({ id: section.sectionId, getClientRects: () => [{}], getBoundingClientRect: () => ({ top: (index - 1) * 900 }) })),
+    ...navigation.map((section, index) => ({ id: section.sectionId, getClientRects: () => [{}], getBoundingClientRect: () => ({ top: (index - 3) * 900 }) })),
   ];
   const document = { querySelectorAll: () => elements, querySelector: () => ({ getBoundingClientRect: () => ({ bottom: 109 }) }), documentElement: { scrollHeight: 5400 } };
   const findSection = load("app/_components/visible-section.ts", { document });

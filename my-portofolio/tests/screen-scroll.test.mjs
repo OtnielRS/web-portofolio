@@ -37,14 +37,14 @@ function setup({ offsets = [0, 900, 1800] } = {}) {
     advance: ms => { now += ms; }, modal: value => { modal = value; }, instant: () => { instant = true; } };
 }
 
-test("one downward gesture goes Home → Projects; a new gesture goes Projects → About", () => {
+test("one downward gesture goes Home → About; a new gesture goes About → Skills", () => {
   const state = setup();
   assert.equal(state.wheel().defaultPrevented, true);
   state.wheel(); state.wheel();
   assert.deepEqual(state.moves.map(move => move.top), [900]);
   state.moves[0].finish();
   state.wheel();
-  assert.equal(state.moves.length, 1, "momentum cannot skip Projects");
+  assert.equal(state.moves.length, 1, "momentum cannot skip About");
   state.advance(250);
   state.wheel();
   assert.deepEqual(state.moves.map(move => move.top), [900, 1800]);
@@ -127,11 +127,11 @@ test("scrolling over the floating header still selects the next full screen", ()
   assert.equal(state.moves[0].top, 900);
 });
 
-test("About to Skills to Experience cannot be combined with Skills catalogue momentum", () => {
+test("About to Skills to Projects cannot be combined with Skills catalogue momentum", () => {
   const state = setup({ offsets: [0, 900, 1800, 2700, 3600, 4500] });
-  state.window.scrollY = 1800;
+  state.window.scrollY = 900;
   state.wheel();
-  assert.equal(state.moves[0].top, 2700, "About must land on Skills");
+  assert.equal(state.moves[0].top, 1800, "About must land on Skills");
   state.moves[0].finish();
   state.advance(250);
   const catalogue = { ...state.target, overflowY: "auto", scrollHeight: 1200, clientHeight: 400, scrollTop: 0 };
@@ -141,11 +141,11 @@ test("About to Skills to Experience cannot be combined with Skills catalogue mom
   assert.equal(state.moves.length, 1, "Skills remains selected when its inner scroll reaches the edge");
   state.advance(250);
   state.wheel({ target: catalogue });
-  assert.equal(state.moves[1].top, 3600, "a new gesture advances exactly to Experience");
+  assert.equal(state.moves[1].top, 2700, "a new gesture advances exactly to Projects");
 });
-test("a swipe spent reading Skills cannot advance to Experience when the catalogue reaches its edge", () => {
+test("a swipe spent reading Skills cannot advance to Projects when the catalogue reaches its edge", () => {
   const state = setup({ offsets: [0, 900, 1800, 2700, 3600, 4500] });
-  state.window.scrollY = 2700;
+  state.window.scrollY = 1800;
   const catalogue = { ...state.target, overflowY: "auto", scrollHeight: 1200, clientHeight: 400, scrollTop: 0 };
   state.listeners.get("touchstart")({ touches: [{ clientX: 100, clientY: 400 }] });
   const move = y => state.listeners.get("touchmove")({ target: catalogue, cancelable: true, touches: [{ clientX: 100, clientY: y }], preventDefault() {} });
@@ -156,5 +156,5 @@ test("a swipe spent reading Skills cannot advance to Experience when the catalog
   state.listeners.get("touchend")();
   state.listeners.get("touchstart")({ touches: [{ clientX: 100, clientY: 400 }] });
   move(200);
-  assert.equal(state.moves[0].top, 3600);
+  assert.equal(state.moves[0].top, 2700);
 });

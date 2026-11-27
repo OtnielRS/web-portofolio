@@ -65,7 +65,7 @@ test("both engineering routes keep Work current in the header", () => {
   const renderActiveSection = load("app/_components/use-active-section.ts", {
     react: { useState: value => [value, () => {}], useEffect: () => {} },
   }).default;
-  const links = [{ href: "/", sectionId: "home" }, { href: "/work", sectionId: "work" }, { href: "/about", sectionId: "about" }];
+  const links = [{ href: "/", sectionId: "home" }, { href: "/work", sectionId: "projects" }, { href: "/about", sectionId: "about" }];
   for (const path of ["/work/bastionfall", "/work/hacktiv-chess"]) assert.equal(renderActiveSection(path, links), "/work");
   assert.equal(renderActiveSection("/skills", links), "/skills");
   assert.equal(renderActiveSection("/work/all", links), "/work");
@@ -127,6 +127,6 @@ test("the collection route uses document flow with its own canonical metadata", 
   const tree = page.default();
   assert.equal(tree.props.className.includes("screen-flow"), false);
   assert.equal(page.metadata.canonical, "/work/all");
-  assert.equal(nodes(tree, node => node.type === "Link")[0].props.href, "/#work", "Selected projects must return to the scrollable homepage, not the one-screen preview route");
+  assert.equal(nodes(tree, node => node.type === "Link")[0].props.href, "/#projects", "Selected projects must return to the scrollable homepage, not the one-screen preview route");
   assert.equal(nodes(tree, node => node.type === "WorkSection")[0].props.screen, undefined);
 });

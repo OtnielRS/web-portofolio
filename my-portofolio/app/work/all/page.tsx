@@ -14,7 +14,7 @@ export default function AllProjectsPage() {
   return (
     <div className="page-content project-collection">
       <div className="container project-collection-top">
-        <Link className="project-case-back" href="/#work"><span className="carousel-previous"><Arrow /></span> Selected projects</Link>
+        <Link className="project-case-back" href="/#projects"><span className="carousel-previous"><Arrow /></span> Selected projects</Link>
         <p>{projects.length} projects · Web &amp; mobile</p>
       </div>
       <WorkSection standalone title="All projects" />
