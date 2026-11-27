@@ -59,3 +59,5 @@ Full-screen wheel and swipe navigation is handled by `app/_components/screen-scr
 Inner content uses overscroll containment and requires a fresh gesture after reaching its edge, preventing Skills from being skipped. Experience scales its diagram to the viewport and hides its inner scrollbar; short/mobile layouts can still scroll to reach every milestone and control.
 
 The collection page's Selected projects link returns to `/#work` on the homepage, so visitors can continue scrolling through About, Skills, Experience, and Contact.
+
+Project cover images for Bastionfall, Hacktiv Chess Ultimate, Tempat Gosip, Alice Store, and Animal Quiz play their embedded videos when selected. The same ProjectPreview component is used on compact cards, the complete collection, and detail pages. Videos are served from public/projects/videos, with mappings in app/_features/work/project-videos.ts. Players mount only after activation, provide native controls and fullscreen, pause offscreen or in hidden tabs, and pause other project videos when played. All five projects support click-to-play video previews.

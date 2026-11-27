@@ -25,7 +25,7 @@ export default function installScreenScroll(root: HTMLElement) {
     return sections[index + direction];
   }
   function blocked(target: HTMLElement, direction: number) {
-    return Boolean(document.querySelector("dialog[open]")) || innerScrollAvailable(target, root, direction);
+    return Boolean(document.fullscreenElement || document.querySelector("dialog[open]")) || innerScrollAvailable(target, root, direction);
   }
   function interrupt() {
     cancelMove?.();
@@ -84,7 +84,7 @@ export default function installScreenScroll(root: HTMLElement) {
   function key(event: KeyboardEvent) {
     if (event.key === "Escape") { interrupt(); return; }
     if (event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey) return;
-    if ((event.target as HTMLElement).closest("a, button, input, textarea, select, [contenteditable], [role=slider]")) return;
+    if ((event.target as HTMLElement).closest("a, button, input, textarea, select, video, audio, [contenteditable], [role=slider]")) return;
     const direction = ["PageDown", "ArrowDown", " "].includes(event.key) ? (event.shiftKey ? -1 : 1) : ["PageUp", "ArrowUp"].includes(event.key) ? -1 : 0;
     if (!direction) return;
     if (moving) { event.preventDefault(); return; }
