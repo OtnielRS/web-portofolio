@@ -38,17 +38,17 @@ test("desktop project pages replace cards instead of adding a scrolling track", 
   let page = render();
   const names = root => nodes(root, node => node.type === "ProjectCard").map(node => node.props.project.name);
   const control = (root, label) => nodes(root, node => node.type === "button" && node.props["aria-label"] === label)[0];
-  assert.deepEqual(names(page), ["Bastionfall", "Hacktiv Chess Ultimate"]);
+  assert.deepEqual(names(page), ["Hacktiv Chess Ultimate", "Tempat Gosip"]);
   assert.equal(control(page, "Previous projects").props.disabled, true);
   control(page, "Next projects").props.onClick();
   page = render();
-  assert.deepEqual(names(page), ["Alice Store", "Tempat Gosip"]);
+  assert.deepEqual(names(page), ["Bastionfall", "Alice Store"]);
   control(page, "Next projects").props.onClick();
   page = render();
   assert.deepEqual(names(page), ["Animal Quiz"]);
   assert.equal(control(page, "Next projects").props.disabled, true);
   control(page, "Previous projects").props.onClick();
-  assert.deepEqual(names(render()), ["Alice Store", "Tempat Gosip"]);
+  assert.deepEqual(names(render()), ["Bastionfall", "Alice Store"]);
 });
 
 test("mobile shows one project and the picker can reach every project directly", () => {

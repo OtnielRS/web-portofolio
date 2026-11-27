@@ -4,6 +4,7 @@ import ProjectArt from "./project-art";
 import { projects } from "./projects";
 import { engineeringNotes } from "./engineering-notes";
 import ProjectGallery from "./project-gallery";
+import ProjectScreenshots from "./project-screenshots";
 
 export default function ProjectDetails({ art }: { art: "bastion" | "chess" | "store" | "social" | "animal" }) {
   const project = projects.find(item => item.art === art)!;
@@ -26,6 +27,7 @@ export default function ProjectDetails({ art }: { art: "bastion" | "chess" | "st
             {art === "social" && <ProjectGallery />}
           </div>
         </div>
+        <ProjectScreenshots art={art} name={project.name} />
         <div className="project-case-sections" data-content-motion>
           <article><h2>{notes.overviewOnly ? "Project overview" : "My contribution"}</h2><p>{notes.contribution}</p><ul>{notes.topics.map(topic => <li key={topic}>{topic}</li>)}</ul></article>
           <article><h2>{notes.overviewOnly ? "Learning experience" : "The engineering challenge"}</h2><p>{notes.challenge}</p><h2>{notes.overviewOnly ? "Application features" : "Implementation approach"}</h2><p>{notes.approach}</p><h2>{notes.overviewOnly ? "Parent access" : "Validation & resilience"}</h2><p>{notes.validation}</p></article>
