@@ -1,0 +1,23 @@
+.screenshot-carousel { margin-top: 24px; min-width: 0; }
+.screenshot-carousel figure { margin: 0; }
+.screenshot-stage { display: block; position: relative; height: clamp(180px, 49vw, 660px); max-height: 68svh; background: #080d16; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.screenshot-stage img { object-fit: contain; animation: screenshot-appear .3s ease-out; }
+.screenshot-carousel figcaption { margin-top: 16px; min-height: 64px; }
+.screenshot-carousel h3 { font-size: 18px; line-height: 1.5; }
+.screenshot-carousel figcaption p { margin-top: 6px; color: var(--muted); font-size: 13px; line-height: 1.8; }
+.screenshot-controls { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-block: 16px; }
+.screenshot-controls > p { font-size: 12px; color: var(--muted); }
+.screenshot-controls > div { display: flex; gap: 10px; }
+.screenshot-controls button { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 6px; background: transparent; color: var(--foreground); cursor: pointer; }
+.screenshot-controls button:disabled { opacity: .35; cursor: default; }
+.screenshot-previous { display: flex; transform: rotate(180deg); }
+.screenshot-thumbnails { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; }
+.screenshot-thumbnails button { min-width: 0; padding: 6px; border: 1px solid var(--line); border-radius: 8px; background: transparent; color: var(--muted); cursor: pointer; text-align: left; }
+.screenshot-thumbnails button[aria-pressed="true"] { border-color: var(--accent); color: var(--foreground); background: var(--surface-soft); }
+.screenshot-thumbnail-image { display: block; position: relative; aspect-ratio: 1.86; border-radius: 4px; background: #080d16; overflow: hidden; }
+.screenshot-thumbnail-image img { object-fit: contain; }
+.screenshot-thumbnails button > span:last-child { display: block; margin: 8px 2px 3px; font-size: 11px; line-height: 1.5; }
+.screenshot-stage:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+@keyframes screenshot-appear { from { opacity: .6; } to { opacity: 1; } }
+@media (max-width: 700px) { .screenshot-thumbnails { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; } .screenshot-carousel figcaption { min-height: 90px; } }
+@media (prefers-reduced-motion: reduce) { .screenshot-stage img { animation: none; } }
