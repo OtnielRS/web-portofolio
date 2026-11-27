@@ -79,7 +79,7 @@ test("every project card has a details link backed by an existing route", () => 
     "react/jsx-runtime": { jsx, jsxs: jsx },
     "next/link": { default: "Link" },
     "./engineering-notes": notes,
-    "./project-preview": { default: "ProjectPreview" },
+    "./project-art": { default: "ProjectArt" },
     "./project-gallery": { default: "ProjectGallery" },
     "@/app/_components/arrow": { default: "Arrow" },
   }).default;

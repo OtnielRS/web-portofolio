@@ -1,5 +1,5 @@
 import Arrow from "@/app/_components/arrow";
-import ProjectPreview from "./project-preview";
+import ProjectArt from "./project-art";
 import ProjectGallery from "./project-gallery";
 import type { Project } from "./projects";
 import Link from "next/link";
@@ -9,7 +9,17 @@ export default function ProjectCard({ project, compact = false }: { project: Pro
   const notes = engineeringNotes.find(item => item.art === project.art);
   return (
     <article className={`project${compact ? " project-compact" : ""}`} id={`project-${project.art}`}>
-      <ProjectPreview project={project} compact={compact} />
+      <a
+        className="project-image-link"
+        href={project.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Open ${project.name} live project`}
+      >
+        <ProjectArt type={project.art} />
+        {compact && <span className="project-preview-label">{project.art === "social" ? "Styled cover" : "App screenshot"}</span>}
+        <span className="project-open"><Arrow diagonal /></span>
+      </a>
       <div className="project-card-copy">
       {(project.role || project.date) && <div className="project-meta">
         {project.role && <span>{project.role}</span>}

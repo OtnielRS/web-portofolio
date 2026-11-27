@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Arrow from "@/app/_components/arrow";
-import ProjectPreview from "./project-preview";
-import { projectVideos } from "./project-videos";
+import ProjectArt from "./project-art";
 import { projects } from "./projects";
 import { engineeringNotes } from "./engineering-notes";
 import ProjectGallery from "./project-gallery";
@@ -23,8 +22,8 @@ export default function ProjectDetails({ art }: { art: "bastion" | "chess" | "st
             <a className="button button-primary" href={project.url} target="_blank" rel="noopener noreferrer">Open live demo <Arrow diagonal /></a>
           </div>
           <div className="project-case-art">
-            <ProjectPreview project={project} linkFallback={false} />
-            <p>{projectVideos[art] ? "Select the preview to play the project video." : "Actual application screenshot"}</p>
+            <ProjectArt type={project.art} />
+            <p>{art === "social" ? "Styled cover combining four application screens" : "Actual application screenshot"}</p>
             {art === "social" && <ProjectGallery />}
           </div>
         </div>

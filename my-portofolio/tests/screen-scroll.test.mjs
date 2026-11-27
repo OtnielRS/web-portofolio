@@ -10,7 +10,7 @@ function setup({ offsets = [0, 900, 1800] } = {}) {
   const exports = {};
   const listeners = new Map(), windowListeners = new Map();
   const moves = [];
-  let now = 0, modal = false, instant = false, fullscreen = false;
+  let now = 0, modal = false, instant = false;
   const heading = { getAttribute: () => null, setAttribute() {}, removeAttribute() {}, addEventListener() {}, focus() { this.focused = true; } };
   const root = { addEventListener: (name, callback) => listeners.set(name, callback), removeEventListener: name => listeners.delete(name), querySelectorAll: () => sections };
   const target = { parentElement: root, closest: () => null };
@@ -18,7 +18,7 @@ function setup({ offsets = [0, 900, 1800] } = {}) {
   const hidden = { getClientRects: () => [] };
   const sections = [hidden, ...offsets.map(top => ({ scrollTop: 0, getClientRects: () => [{}], getBoundingClientRect: () => ({ top: top - window.scrollY }), querySelector: () => heading }))];
   vm.runInNewContext(compiled, {
-    exports, window, document: { querySelector: () => modal ? {} : null, get fullscreenElement() { return fullscreen ? {} : null; } }, performance: { now: () => now },
+    exports, window, document: { querySelector: () => modal ? {} : null }, performance: { now: () => now },
     require: () => ({ default: (top, complete, cancelled) => {
       const move = { top, cancelled: false, finish: () => { if (!move.cancelled) { window.scrollY = top; complete(); } } };
       moves.push(move);
@@ -34,7 +34,7 @@ function setup({ offsets = [0, 900, 1800] } = {}) {
     return event;
   }
   return { wheel, moves, window, root, target, listeners, windowListeners, heading, sections, cleanup,
-    advance: ms => { now += ms; }, modal: value => { modal = value; }, instant: () => { instant = true; }, fullscreen: value => { fullscreen = value; } };
+    advance: ms => { now += ms; }, modal: value => { modal = value; }, instant: () => { instant = true; } };
 }
 
 test("one downward gesture goes Home → About; a new gesture goes About → Skills", () => {
@@ -157,13 +157,4 @@ test("a swipe spent reading Skills cannot advance to Projects when the catalogue
   state.listeners.get("touchstart")({ touches: [{ clientX: 100, clientY: 400 }] });
   move(200);
   assert.equal(state.moves[0].top, 2700);
-});
-
-test("video playback keys and fullscreen wheel input never change the project screen", () => {
-  const state = setup();
-  state.windowListeners.get("keydown")({ key: " ", target: { closest: selector => selector.includes("video") ? {} : null }, preventDefault() { throw new Error("Video playback key was intercepted"); } });
-  assert.equal(state.moves.length, 0);
-  state.fullscreen(true);
-  assert.equal(state.wheel().defaultPrevented, false);
-  assert.equal(state.moves.length, 0);
 });
