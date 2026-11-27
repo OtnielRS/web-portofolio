@@ -46,11 +46,14 @@ function nodes(root, predicate) {
 const disclosure = root => nodes(root, node => node.type === "button" && "aria-expanded" in node.props)[0];
 const skillNames = root => nodes(root, node => node.type === "li").map(node => node.props.children[1].props.children);
 
-test("overview shows all environments; View all reveals every skill and retains the disclosure", () => {
+test("overview prioritizes core development skills; View all reveals every skill and retains the disclosure", () => {
   const { render, scrollRegion } = mount();
   let tree = render();
   assert.equal(nodes(tree, node => node.type === "h3").length, 7);
-  assert.equal(skillNames(tree).length, 14);
+  assert.equal(skillNames(tree).length, 16);
+  assert.deepEqual(skillNames(tree).slice(0, 8), ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Express.js"]);
+  assert.equal(skillNames(tree).includes("AWS"), false);
+  assert.deepEqual(skillNames(tree).slice(8, 10), ["Gemini API", "OpenAI"]);
   assert.equal(disclosure(tree).props["aria-expanded"], false);
   disclosure(tree).props.onClick();
   tree = render();
@@ -77,7 +80,7 @@ test("environment filters narrow the catalogue; collapse resets the next expansi
   assert.equal(nodes(tree, node => node.type === "button" && node.props.children === "AI & cloud")[0].props["aria-pressed"], true);
   disclosure(tree).props.onClick();
   tree = render();
-  assert.equal(skillNames(tree).length, 14);
+  assert.equal(skillNames(tree).length, 16);
   disclosure(tree).props.onClick();
   tree = render();
   assert.equal(skillNames(tree).length, 28);
