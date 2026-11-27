@@ -1,5 +1,6 @@
 .screen-flow > .skills-section { display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 24px; padding-block: calc(var(--header-height) + 28px) 32px; overflow: hidden; }
-.skills-heading { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-shrink: 0; }
+.skills-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; flex-shrink: 0; padding: 6px; }
+.skills-heading > div { flex: 1 1 240px; min-width: 0; }
 .skills-heading :is(h1,h2) { font-size: clamp(34px, 4vw, 54px); line-height: 1.1; font-weight: 650; letter-spacing: -.035em; }
 .skills-heading :is(h1,h2) > span { color: var(--accent); }
 .skills-heading p { margin-top: 12px; color: var(--muted); font-size: 14px; line-height: 1.7; max-width: 50ch; }

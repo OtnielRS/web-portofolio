@@ -25,7 +25,7 @@ export default function installScreenScroll(root: HTMLElement) {
     return sections[index + direction];
   }
   function blocked(target: HTMLElement, direction: number) {
-    return Boolean(document.querySelector("dialog[open]")) || innerScrollAvailable(target, root, direction);
+    return Boolean(document.fullscreenElement || document.querySelector("dialog[open]")) || innerScrollAvailable(target, root, direction);
   }
   function interrupt() {
     cancelMove?.();

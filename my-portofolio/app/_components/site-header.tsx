@@ -10,7 +10,7 @@ const navigation = [
   { href: "/", label: "Home", sectionId: "home", planet: "earth" },
   { href: "/about", label: "About", sectionId: "about", planet: "mars" },
   { href: "/skills", label: "Skills", sectionId: "skills", planet: "jupiter" },
-  { href: "/work", label: "Projects", sectionId: "work", planet: "saturn" },
+  { href: "/work", label: "Projects", sectionId: "projects", planet: "saturn" },
   { href: "/about#experience", label: "Experience", sectionId: "experience", planet: "uranus" },
   { href: "/contact", label: "Contact", sectionId: "contact", planet: "neptune" },
 ];

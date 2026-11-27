@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useId, useRef, useState } from "react";
-import { skillGroups } from "./skills";
+import { overviewSkillGroups, skillGroups } from "./skills";
 
 export default function SkillsSection({ standalone = false }: { standalone?: boolean }) {
   const [expanded, setExpanded] = useState(false);
@@ -10,7 +10,7 @@ export default function SkillsSection({ standalone = false }: { standalone?: boo
   const catalogRef = useRef<HTMLDivElement>(null);
   const catalogId = useId();
   const Heading = standalone ? "h1" : "h2";
-  const groups = environment === "All" ? skillGroups : skillGroups.filter(group => group.name === environment);
+  const groups = !expanded ? overviewSkillGroups : environment === "All" ? skillGroups : skillGroups.filter(group => group.name === environment);
   const total = skillGroups.reduce((count, group) => count + group.skills.length, 0);
   const visibleCount = groups.reduce((count, group) => count + group.skills.length, 0);
 
@@ -52,14 +52,13 @@ export default function SkillsSection({ standalone = false }: { standalone?: boo
           <div className="skill-environment" key={group.name} data-content-motion>
             <div className="skill-environment-heading"><h3>{group.name}</h3><span>{group.skills.length} skills</span></div>
             <ul>
-              {group.skills.slice(0, expanded ? undefined : 2).map(skill => (
+              {group.skills.map(skill => (
                 <li className="skill-item" key={skill.name}>
                   <Image className={"monochrome" in skill && skill.monochrome ? "skill-logo skill-logo-monochrome" : "skill-logo"} src={`/skills/${skill.icon}.svg`} alt="" width={24} height={24} />
                   <span>{skill.name}</span>
                 </li>
               ))}
             </ul>
-            {!expanded && group.skills.length > 2 && <p className="skill-more">+{group.skills.length - 2} more in the full list</p>}
           </div>
         ))}
       </div>

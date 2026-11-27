@@ -7,7 +7,7 @@ import Arrow from "@/app/_components/arrow";
 export default function WorkSection({ standalone = false, screen = false, title = "Selected projects" }: { standalone?: boolean; screen?: boolean; title?: string }) {
   const Heading = standalone ? "h1" : "h2";
   return (
-    <section className={`work-section container${screen ? " screen-work" : ""}`} id="work" aria-labelledby="work-title">
+    <section className={`work-section container${screen ? " screen-work" : ""}`} id="projects" aria-labelledby="work-title">
       <div className="section-heading" data-content-motion>
         <Heading id="work-title">{title}<span>.</span></Heading>
         <p>Ideas brought down to Earth.</p>

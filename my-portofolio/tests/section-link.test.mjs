@@ -14,7 +14,7 @@ const visibleCompiled = ts.transpileModule(fs.readFileSync("app/_components/visi
   compilerOptions: { module: ts.ModuleKind.CommonJS },
 }).outputText;
 
-function render({ pathname = "/", reduced = false, sectionId = "work" } = {}) {
+function render({ pathname = "/", reduced = false, sectionId = "projects" } = {}) {
   const calls = [];
   const exports = {};
   const scrollExports = {};
@@ -60,14 +60,14 @@ function render({ pathname = "/", reduced = false, sectionId = "work" } = {}) {
     document,
     window,
   });
-  const link = exports.default({ sectionId, pageHref: sectionId === "home" ? "/#home" : sectionId === "experience" ? "/about#experience" : `/${sectionId}`, children: "Navigate" });
+  const link = exports.default({ sectionId, pageHref: sectionId === "home" ? "/#home" : sectionId === "experience" ? "/about#experience" : sectionId === "projects" ? "/work" : `/${sectionId}`, children: "Navigate" });
   const event = { button: 0, metaKey: false, ctrlKey: false, shiftKey: false, altKey: false, preventDefault: () => calls.push({ kind: "prevent" }) };
   return { link, event, calls, style, listeners, attributes, headingListeners, section, advance: time => frame?.(time) };
 }
 
 test("homepage navigation animates to its section instead of loading another page", () => {
   const { link, event, calls, advance, style } = render();
-  assert.equal(link.props.href, "/#work");
+  assert.equal(link.props.href, "/#projects");
   link.props.onClick(event);
   assert.equal(calls[0].kind, "prevent");
   assert.equal(style.scrollSnapType, "none");
@@ -134,7 +134,7 @@ test("completed navigation updates the fragment and focuses its heading without 
   advance(525);
   assert.equal(calls.some(call => call.kind === "focus" || call.kind === "history"), false);
   advance(1050);
-  assert.equal(calls.find(call => call.kind === "history").hash, "#work");
+  assert.equal(calls.find(call => call.kind === "history").hash, "#projects");
   assert.equal(calls.at(-1).kind, "focus");
   assert.equal(calls.at(-1).preventScroll, true);
   assert.equal(attributes.get("tabindex"), "-1");
@@ -153,7 +153,7 @@ test("cancelled navigation does not steal focus or create history; reduced motio
   assert.equal(cancelled.section.scrollTop, 400);
   const instant = render({ reduced: true });
   instant.link.props.onClick(instant.event);
-  assert.equal(instant.calls.find(call => call.kind === "history").hash, "#work");
+  assert.equal(instant.calls.find(call => call.kind === "history").hash, "#projects");
   assert.equal(instant.calls.at(-1).kind, "focus");
 });
 

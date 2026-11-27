@@ -38,17 +38,17 @@ test("desktop project pages replace cards instead of adding a scrolling track", 
   let page = render();
   const names = root => nodes(root, node => node.type === "ProjectCard").map(node => node.props.project.name);
   const control = (root, label) => nodes(root, node => node.type === "button" && node.props["aria-label"] === label)[0];
-  assert.deepEqual(names(page), ["Bastionfall", "Hacktiv Chess Ultimate"]);
+  assert.deepEqual(names(page), ["Hacktiv Chess Ultimate", "Tempat Gosip"]);
   assert.equal(control(page, "Previous projects").props.disabled, true);
   control(page, "Next projects").props.onClick();
   page = render();
-  assert.deepEqual(names(page), ["Alice Store", "Tempat Gosip"]);
+  assert.deepEqual(names(page), ["Bastionfall", "Alice Store"]);
   control(page, "Next projects").props.onClick();
   page = render();
   assert.deepEqual(names(page), ["Animal Quiz"]);
   assert.equal(control(page, "Next projects").props.disabled, true);
   control(page, "Previous projects").props.onClick();
-  assert.deepEqual(names(render()), ["Alice Store", "Tempat Gosip"]);
+  assert.deepEqual(names(render()), ["Bastionfall", "Alice Store"]);
 });
 
 test("mobile shows one project and the picker can reach every project directly", () => {
@@ -65,7 +65,7 @@ test("both engineering routes keep Work current in the header", () => {
   const renderActiveSection = load("app/_components/use-active-section.ts", {
     react: { useState: value => [value, () => {}], useEffect: () => {} },
   }).default;
-  const links = [{ href: "/", sectionId: "home" }, { href: "/work", sectionId: "work" }, { href: "/about", sectionId: "about" }];
+  const links = [{ href: "/", sectionId: "home" }, { href: "/work", sectionId: "projects" }, { href: "/about", sectionId: "about" }];
   for (const path of ["/work/bastionfall", "/work/hacktiv-chess"]) assert.equal(renderActiveSection(path, links), "/work");
   assert.equal(renderActiveSection("/skills", links), "/skills");
   assert.equal(renderActiveSection("/work/all", links), "/work");
@@ -79,7 +79,7 @@ test("every project card has a details link backed by an existing route", () => 
     "react/jsx-runtime": { jsx, jsxs: jsx },
     "next/link": { default: "Link" },
     "./engineering-notes": notes,
-    "./project-art": { default: "ProjectArt" },
+    "./project-preview": { default: "ProjectPreview" },
     "./project-gallery": { default: "ProjectGallery" },
     "@/app/_components/arrow": { default: "Arrow" },
   }).default;
@@ -127,6 +127,6 @@ test("the collection route uses document flow with its own canonical metadata", 
   const tree = page.default();
   assert.equal(tree.props.className.includes("screen-flow"), false);
   assert.equal(page.metadata.canonical, "/work/all");
-  assert.equal(nodes(tree, node => node.type === "Link")[0].props.href, "/#work", "Selected projects must return to the scrollable homepage, not the one-screen preview route");
+  assert.equal(nodes(tree, node => node.type === "Link")[0].props.href, "/#projects", "Selected projects must return to the scrollable homepage, not the one-screen preview route");
   assert.equal(nodes(tree, node => node.type === "WorkSection")[0].props.screen, undefined);
 });
