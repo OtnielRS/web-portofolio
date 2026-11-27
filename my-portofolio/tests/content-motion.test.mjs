@@ -137,6 +137,20 @@ test("reduced motion keeps content visible and settles active reveals immediatel
   assert.equal(state.listeners.size, 0);
 });
 
+test("navigation focus preserves an entrance already running instead of making the title jump", () => {
+  const state = setup();
+  state.enter();
+  const entrance = state.reveals[0];
+  state.document.activeElement = state.target;
+  state.rootListeners.get("focusin")({ target: state.target });
+  assert.equal(entrance.cancelled, false);
+  assert.equal(state.reveals.length, 1);
+  entrance.finish();
+  state.rootListeners.get("focusin")({ target: state.target });
+  assert.equal(state.reveals.length, 1, "Focusing visible content must not restart its reveal");
+  state.cleanup();
+});
+
 test("browsers without animation or observer support never hide content", () => {
   const fallback = setup({ supported: false });
   assert.equal(fallback.cleanup, undefined);

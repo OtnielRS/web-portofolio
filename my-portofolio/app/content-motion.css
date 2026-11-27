@@ -7,7 +7,6 @@
   to { opacity: 1; transform: translateY(0); }
 }
 :where([data-content-motion]) { animation: content-arrive .9s cubic-bezier(0.16, 1, 0.3, 1); }
-[data-content-motion]:focus-within { animation: none; }
 .portfolio-navigation-link { animation: navigation-arrive .6s cubic-bezier(0.16, 1, 0.3, 1) both; }
 .project-pages[data-page-change="true"] { animation: none; }
 @media (prefers-reduced-motion: reduce) {

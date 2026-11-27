@@ -9,7 +9,6 @@ type EngineeringNote = {
   approach: string;
   validation: string;
   topics: string[];
-  overviewOnly?: boolean;
 };
 
 export const engineeringNotes: EngineeringNote[] = [
@@ -60,13 +59,12 @@ export const engineeringNotes: EngineeringNote[] = [
   {
     art: "animal",
     href: "/work/animal-quiz",
-    focus: "Discovering the animal world through playful learning",
-    scope: "Animal-learning web application",
-    overviewOnly: true,
-    contribution: "Animal Quiz is a children's animal-learning experience with learning cards, playful quizzes, and parent accounts.",
-    challenge: "The experience introduces animals through easy-to-understand questions and a colorful, playful interface.",
-    approach: "Children can explore animal learning cards and quizzes. The supplied homepage presents familiar animals and a start-adventure action.",
-    validation: "The homepage also provides parent sign-in and account registration, alongside access to learning cards and trivia.",
-    topics: ["Animal learning cards", "Playful quizzes and trivia", "Child-friendly homepage", "Parent sign-in and registration"],
+    focus: "A playful quiz experience with authenticated API access",
+    scope: "Full-stack developer · October 2026",
+    contribution: "I built a responsive React interface with Tailwind CSS and Vite, managed application state with Redux, added JWT authentication and access checks, and connected the frontend to RESTful APIs.",
+    challenge: "The quiz needs to keep question progress and scores consistent while connecting a responsive interface to authenticated API endpoints.",
+    approach: "React and Tailwind CSS provide the interface, Vite supports the frontend build, and Redux manages application state. Asynchronous requests fetch and display data from RESTful APIs.",
+    validation: "JWT authentication with jsonwebtoken and access checks manages sessions and protects private API endpoints.",
+    topics: ["Responsive React interface with Tailwind CSS and Vite", "Redux application state management", "JWT authentication and private API access checks", "Asynchronous RESTful API integration"],
   },
 ];

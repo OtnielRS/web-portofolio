@@ -80,7 +80,10 @@ export default function useContentMotion(rootRef: RefObject<HTMLElement | null>,
     function focusContent(event: FocusEvent) {
       const target = (event.target as HTMLElement | null)?.closest<HTMLElement>("[data-content-motion]");
       const state = target ? states.get(target) : undefined;
-      if (target && state) reveal(target, state, false);
+      // Navigation focuses the destination heading after scrolling. Only reveal
+      // hidden content here; cancelling an entrance already in progress makes
+      // the title jump to its final position like a second page refresh.
+      if (target && state?.phase === "pending") reveal(target, state, false);
     }
     function changePreference() {
       for (const [target, state] of states) {

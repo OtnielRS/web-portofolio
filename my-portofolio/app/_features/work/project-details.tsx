@@ -5,10 +5,12 @@ import { projects } from "./projects";
 import { engineeringNotes } from "./engineering-notes";
 import ProjectGallery from "./project-gallery";
 import ProjectScreenshots from "./project-screenshots";
+import { projectOverviews } from "./project-overviews";
 
 export default function ProjectDetails({ art }: { art: "bastion" | "chess" | "store" | "social" | "animal" }) {
   const project = projects.find(item => item.art === art)!;
   const notes = engineeringNotes.find(item => item.art === art)!;
+  const overview = projectOverviews[art];
   return (
     <div className="page-content project-page">
       <section className="project-case container" aria-labelledby="project-case-title">
@@ -29,8 +31,12 @@ export default function ProjectDetails({ art }: { art: "bastion" | "chess" | "st
         </div>
         <ProjectScreenshots art={art} name={project.name} />
         <div className="project-case-sections" data-content-motion>
-          <article><h2>{notes.overviewOnly ? "Project overview" : "My contribution"}</h2><p>{notes.contribution}</p><ul>{notes.topics.map(topic => <li key={topic}>{topic}</li>)}</ul></article>
-          <article><h2>{notes.overviewOnly ? "Learning experience" : "The engineering challenge"}</h2><p>{notes.challenge}</p><h2>{notes.overviewOnly ? "Application features" : "Implementation approach"}</h2><p>{notes.approach}</p><h2>{notes.overviewOnly ? "Parent access" : "Validation & resilience"}</h2><p>{notes.validation}</p></article>
+          <article><h2>Project overview</h2><p>{overview.summary}</p><ul>{overview.features.map(feature => <li key={feature}>{feature}</li>)}</ul></article>
+          <article><h2>{overview.experienceTitle}</h2><p>{overview.experience}</p><h2>Application features</h2><p>{overview.details}</p><h2>{overview.accessTitle}</h2><p>{overview.access}</p></article>
+        </div>
+        <div className="project-case-sections" data-content-motion>
+          <article><h2>My contribution</h2><p>{notes.contribution}</p><ul>{notes.topics.map(topic => <li key={topic}>{topic}</li>)}</ul></article>
+          <article><h2>The engineering challenge</h2><p>{notes.challenge}</p><h2>Implementation approach</h2><p>{notes.approach}</p><h2>Validation &amp; resilience</h2><p>{notes.validation}</p></article>
         </div>
       </section>
     </div>

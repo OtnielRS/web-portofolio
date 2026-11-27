@@ -89,7 +89,33 @@ test("every project card has a details link backed by an existing route", () => 
     const href = detailsLinks[0].props.href;
     assert.ok(fs.existsSync(`app${href}/page.tsx`), `Missing route for ${project.name}`);
   }
-  assert.equal(notes.engineeringNotes.find(note => note.art === "animal").overviewOnly, true);
+  assert.equal(notes.engineeringNotes.find(note => note.art === "animal").scope, "Full-stack developer · October 2026");
+});
+
+test("every project explains the app before presenting the developer contribution", () => {
+  const data = load("app/_features/work/projects.ts");
+  const jsx = (type, props) => ({ type, props });
+  const details = load("app/_features/work/project-details.tsx", {
+    "react/jsx-runtime": { jsx, jsxs: jsx },
+    "next/link": { default: "Link" },
+    "@/app/_components/arrow": { default: "Arrow" },
+    "./projects": data,
+    "./engineering-notes": load("app/_features/work/engineering-notes.ts"),
+    "./project-overviews": load("app/_features/work/project-overviews.ts"),
+    "./project-preview": { default: "ProjectPreview" },
+    "./project-gallery": { default: "ProjectGallery" },
+    "./project-screenshots": { default: "ProjectScreenshots" },
+  }).default;
+  for (const project of data.projects) {
+    const view = details({ art: project.art });
+    const headings = nodes(view, node => node.type === "h2").map(node => node.props.children);
+    assert.equal(headings[0], "Project overview");
+    assert.ok(headings.indexOf("My contribution") > headings.indexOf("Application features"));
+    assert.equal(headings.filter(heading => heading === "My contribution").length, 1);
+  }
+  const animal = data.projects.find(project => project.art === "animal");
+  assert.equal(animal.role, "Full-stack developer");
+  assert.ok(animal.stack.includes("Redux"));
 });
 
 test("View all projects opens the full collection from either compact preview", () => {
